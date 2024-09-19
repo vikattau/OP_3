@@ -19,14 +19,15 @@ struct Studentas{
 void duomenuived(Studentas &Lok){
     cout<<"Iveskite Varda, Pavarde ir Egzamino rezultata: ";
     cin>>Lok.vardas>>Lok.pavarde>>Lok.egz;
-    cout<<"Kiek Namu darbu pazymiu ivesite?: ";
+    cout<<"Iveskite Namu Darbu pazymius (noredami uzbaigti ivedima iveskite 0): \n";
+
     int x;
-    cin>>x;
-    Lok.NamuDarbai.resize(x);
-    for(int i=0; i<x; i++){
-        cout<<"Iveksite Namu darbu pazymi " << (i + 1) <<": ";
-        cin >> Lok.NamuDarbai[i];
-    };
+    while(true){
+        cout<<"Pazymys: ";
+        cin>> x;
+        if (x == 0) break;
+        Lok.NamuDarbai.push_back(x);
+    }
 };
 void valymas(Studentas &Lok){
     Lok.vardas.clear();
