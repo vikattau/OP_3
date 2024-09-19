@@ -28,6 +28,11 @@ void duomenuived(Studentas &Lok){
         if (x == 0) break;
         Lok.NamuDarbai.push_back(x);
     }
+    for(int i=0; i<x; i++){
+        cout<<"Iveksite Namu darbu pazymi " << (i + 1) <<": ";
+        cin >> Lok.NamuDarbai[i];
+    };
+
 };
 void valymas(Studentas &Lok){
     Lok.vardas.clear();
