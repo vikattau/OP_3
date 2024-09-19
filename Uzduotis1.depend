@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1726746040 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<iomanip>
+	<algorithm>
+
