@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <random>
+#include <fstream>
 
 using std::cout;
 using std::endl;
@@ -14,7 +15,7 @@ using std::string;
 struct Studentas{
     string vardas, pavarde;
     vector<int> NamuDarbai;
-    int egz, rez;
+    int egz;
 };
 void atsitiktiniuBaluGeneravimas(Studentas &Lok){
     std::random_device rd;
@@ -77,7 +78,31 @@ double skaicGalutiniBalaMed(const Studentas &studentas){
     double medianaND = medianosSkaic(studentas.NamuDarbai);
     return (medianaND * 0.4) + (studentas.egz * 0.6);
 }
-void spausdinimas(Studentas Lok){
+void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas){
+    std::ifstream failas(failoPavadinimas);
+    if (!failas) {
+        cout<< "Nepavyko nuskaityti failo"<<endl;
+        return;
+    }
+    string failoEilute;
+    std::getline(failas, failoEilute);
+    while(std::getline(failas, failoEilute)){
+        std::istringstream iss(failoEilute);
+        Studentas stud;
+        iss >> stud.vardas >> stud.pavarde;
+
+        int pazymys;
+        while(iss >> pazymys){
+            stud.NamuDarbai.push_back(pazymys);
+        }
+        stud.egz = stud.NamuDarbai.back();
+        stud.NamuDarbai.pop_back();
+
+        studentai.push_back(stud);
+    }
+    failas.close();
+}
+void spausdinimas(const Studentas &Lok){
     cout<< std::setw(15) << std::left << Lok.pavarde
         << std::setw(15) << std::left << Lok.vardas
         << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
@@ -87,14 +112,21 @@ int main()
 {
     vector<Studentas> Vec1;
     Studentas A;
-    cout<<"Kiek studentu ivesite?: ";
-    int skaicius;
-    cin>>skaicius;
-    for(int i=0; i<skaicius; i++){
-        cout<<"Iveskite informacija: "<<endl;
-        duomenuived(A);
-        Vec1.push_back(A);
-        valymas(A);
+    cout<< "Duomenis apie studentus nuskaitysite ar ivesite ranka? Iveskite 1, jei nuskaitysite nuo failo, 0, jei ivesite ranka: "<<endl;
+    int ats;
+    cin>>ats;
+    if(ats == 1){
+        skaitytiFaila(Vec1, "kursiokai.txt");
+    }else if (ats == 0){
+        cout<<"Kiek studentu ivesite?: ";
+        int skaicius;
+        cin>>skaicius;
+        for(int i=0; i<skaicius; i++){
+            cout<<"Iveskite informacija: "<<endl;
+            duomenuived(A);
+            Vec1.push_back(A);
+            valymas(A);
+        }
     }
     cout << std::setw(15) << std::left << "Pavarde"
          << std::setw(15) << std::left << "Vardas"
@@ -103,10 +135,11 @@ int main()
 
     cout << string(70, '-') << endl;
 
-    for(int i=0; i<skaicius; i++){
+    for(int i=0; i<Vec1.size(); i++){
         spausdinimas(Vec1.at(i));
         cout<<endl;
     }
+    system("pause");
     return 0;
 };
 
