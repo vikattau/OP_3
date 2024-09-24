@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1726765887 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1726769071 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
 	<iostream>
 	<string>
 	<vector>
 	<iomanip>
 	<algorithm>
+	<random>
 

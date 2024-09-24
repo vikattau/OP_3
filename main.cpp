@@ -3,6 +3,7 @@
 #include <vector>
 #include <iomanip>
 #include <algorithm>
+#include <random>
 
 using std::cout;
 using std::endl;
@@ -15,18 +16,36 @@ struct Studentas{
     vector<int> NamuDarbai;
     int egz, rez;
 };
+void atsitiktiniuBaluGeneravimas(Studentas &Lok){
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 10);
 
+    int NDskaicius = 5;
+    for (int i=0; i < NDskaicius; i++){
+        Lok.NamuDarbai.push_back(dist(mt));
+    }
+    Lok.egz = dist(mt);
+}
 void duomenuived(Studentas &Lok){
-    cout<<"Iveskite Varda, Pavarde ir Egzamino rezultata: ";
-    cin>>Lok.vardas>>Lok.pavarde>>Lok.egz;
-    cout<<"Iveskite Namu Darbu pazymius (noredami uzbaigti ivedima iveskite 0): \n";
-
-    int x;
-    while(true){
-        cout<<"Pazymys: ";
-        cin>> x;
-        if (x == 0) break;
-        Lok.NamuDarbai.push_back(x);
+    cout<<"Iveskite Varda, Pavarde: ";
+    cin>>Lok.vardas>>Lok.pavarde;
+    cout<<"Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
+    string ats;
+    cin>> ats;
+    if (ats == "T" || ats == "t"){
+        atsitiktiniuBaluGeneravimas(Lok);
+    } else if (ats == "N" || ats == "n"){
+        cout<<"Iveskite egzamino rezultata: ";
+        cin>> Lok.egz;
+        cout<<"Iveskite Namu Darbu pazymius (noredami uzbaigti ivedima iveskite 0): \n";
+        int x;
+        while(true){
+            cout<<"Pazymys: ";
+            cin>> x;
+            if (x == 0) break;
+            Lok.NamuDarbai.push_back(x);
+        }
     }
 };
 void valymas(Studentas &Lok){
