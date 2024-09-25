@@ -89,18 +89,22 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
     while(std::getline(failas, failoEilute)){
         std::istringstream iss(failoEilute);
         Studentas stud;
-        iss >> stud.vardas >> stud.pavarde;
+        iss >> std::ws >> stud.vardas >> std::ws >>stud.pavarde;
 
         int pazymys;
         while(iss >> pazymys){
             stud.NamuDarbai.push_back(pazymys);
         }
-        stud.egz = stud.NamuDarbai.back();
-        stud.NamuDarbai.pop_back();
+        if (!stud.NamuDarbai.empty()) {
+            stud.egz = stud.NamuDarbai.back();
+            stud.NamuDarbai.pop_back();
+        } else {
+            cout << "Nera pazymiu studentui: " << stud.vardas << " " << stud.pavarde << endl;
+            continue;
+        }
 
         studentai.push_back(stud);
     }
-    failas.close();
 }
 void spausdinimas(const Studentas &Lok){
     cout<< std::setw(15) << std::left << Lok.pavarde
@@ -116,7 +120,24 @@ int main()
     int ats;
     cin>>ats;
     if(ats == 1){
-        skaitytiFaila(Vec1, "kursiokai.txt");
+        cout<< "Kuri faila norite nuskaityti? (Pasirinkite skaiciu): \n"<<
+            "1 - kursiokai.txt \n"<<
+            "2 - studentai10000.txt \n"<<
+            "3 - studentai100000.txt \n"<<
+            "4 - studentai1000000.txt \n"<<endl;
+        int failas;
+        cin>>failas;
+        if (failas == 1){
+            skaitytiFaila(Vec1, "kursiokai.txt");
+        }else if (failas == 2){
+            skaitytiFaila(Vec1, "C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai10000.txt");
+        }else if (failas == 3){
+            skaitytiFaila(Vec1,"C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai100000.txt");
+        }else if (failas == 4) {
+            skaitytiFaila(Vec1, "C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai1000000.txt");
+        }else{
+            cout << "Tokio failo nera" << endl;
+        }
     }else if (ats == 0){
         cout<<"Kiek studentu ivesite?: ";
         int skaicius;
