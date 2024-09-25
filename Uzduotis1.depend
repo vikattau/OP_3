@@ -1,20 +1,21 @@
 # depslib dependency file v1.0
-1727273146 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1727279056 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
 	"Mylib.h"
 	"Stud.h"
 
-1727269328 c:\users\msi\desktop\op\uzduotis1\mylib.h
+1727279019 c:\users\msi\desktop\op\uzduotis1\mylib.h
 	<iostream>
 	<string>
 	<vector>
 	<iomanip>
 	<algorithm>
 	<random>
+	<stdexcept>
 	<fstream>
 
 1727270423 c:\users\msi\desktop\op\uzduotis1\stud.h
 	"Mylib.h"
 
-1727272820 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
+1727279292 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
 	"Stud.h"
 

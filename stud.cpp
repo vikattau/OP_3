@@ -1,42 +1,52 @@
 #include "Stud.h"
 
 void duomenuived(Studentas &Lok){
-    cout<<"Iveskite Varda, Pavarde: ";
-    cin>>Lok.vardas>>Lok.pavarde;
-    cout<<"Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
-    string ats;
-    cin>> ats;
-    if (ats == "T" || ats == "t"){
-        atsitiktiniuBaluGeneravimas(Lok);
-    } else if (ats == "N" || ats == "n"){
-        cout<<"Iveskite egzamino rezultata (0 - 10): ";
-        int Egz;
-        while (!(cin >> Egz) || Egz < 0 || Egz > 10){
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << "Neteisingai ivedete, bandykite dar karta: ";
-        }
-        Lok.egz = Egz;
+    cout<<"Iveskite Varda: ";
+    cin>>Lok.vardas;
+    cout<< "Iveksite Pavarde: ";
+    cin>>Lok.pavarde;
+    while (true) {
+        cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
+        string ats;
+        cin >> ats;
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        cout<<"Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
-        int x;
-        bool ivestasPazymys = false;
-        while(true){
-            cout<<"Pazymys: ";
-            while (!(cin >> x) || x < 0 || x > 10){
+        if (ats == "T" || ats == "t") {
+            atsitiktiniuBaluGeneravimas(Lok);
+            break;
+        } else if (ats == "N" || ats == "n") {
+            int Egz;
+            cout << "Iveskite egzamino rezultata (0 - 10): ";
+            while (!(cin >> Egz) || Egz < 0 || Egz > 10) {
                 cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore bad input
                 cout << "Neteisingai ivedete, bandykite dar karta: ";
             }
-            if (x == 0){
-                if (!ivestasPazymys){
-                    cout << "Turite ivesti bent viena pazymi. \n";
-                    continue;
+            Lok.egz = Egz;
+
+            cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
+            int x;
+            bool ivestasPazymys = false;
+            while (true) {
+                cout << "Pazymys: ";
+                while (!(cin >> x) || x < 0 || x > 10) {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Neteisingai ivedete, bandykite dar karta: ";
                 }
-                break;
+                if (x == 0) {
+                    if (!ivestasPazymys) {
+                        cout << "Turite ivesti bent viena pazymi. \n";
+                        continue;
+                    }
+                    break;
+                }
+                Lok.NamuDarbai.push_back(x);
+                ivestasPazymys = true;
             }
-            Lok.NamuDarbai.push_back(x);
-            ivestasPazymys = true;
+            break;
+        } else {
+            cout << "Neteisingai ivedete! Prasome iveskite T arba N." << endl; // Invalid input for automatic grades
         }
     }
 };
@@ -99,9 +109,10 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
     while(std::getline(failas, failoEilute)){
         std::istringstream iss(failoEilute);
         Studentas stud;
-        iss >> std::ws >> stud.vardas >> std::ws >>stud.pavarde;
 
-        if (!(iss >> stud.vardas >> stud.pavarde)){
+        iss >> stud.vardas >>stud.pavarde;
+
+        if (iss.fail()){
             cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
             continue;
         }
@@ -109,7 +120,7 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
         int pazymys;
         while(iss >> pazymys){
             if (pazymys < 0 || pazymys > 10) {
-                cout << "File neteisingas pazymys studentui: " << stud.vardas << " " << stud.pavarde <<endl;
+                cout << "Faile neteisingas pazymys studentui: " << stud.vardas << " " << stud.pavarde <<endl;
                 continue;
             }
             stud.NamuDarbai.push_back(pazymys);

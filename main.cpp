@@ -8,6 +8,7 @@ int main()
     cout<< "Duomenis apie studentus nuskaitysite ar ivesite ranka? Iveskite 1, jei nuskaitysite nuo failo, 0, jei ivesite ranka: "<<endl;
     int ats;
     cin>>ats;
+    try{
     if(ats == 1){
         cout<< "Kuri faila norite nuskaityti? (Pasirinkite skaiciu): \n"<<
             "1 - kursiokai.txt \n"<<
@@ -30,14 +31,27 @@ int main()
     }else if (ats == 0){
         cout<<"Kiek studentu ivesite?: ";
         int skaicius;
-        cin>>skaicius;
+        while (!(cin >> skaicius) || skaicius <= 0){
+            cout << "Netinkamas skaicius, iveskite per nauja: ";
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        cin.ignore();
         for(int i=0; i<skaicius; i++){
             cout<<"Iveskite informacija: "<<endl;
             duomenuived(A);
             Vec1.push_back(A);
             valymas(A);
         }
+    } else {
+        cout << "Neteisinga pasirinkimas. Bandyti dar karta (1-4): " << endl;
     }
+    } catch (const std::runtime_error &e){
+        cout << "Klaida: " << e.what() << endl;
+    } catch (...){
+        cout << "Ivyko nezinoma klaida." << endl;
+    }
+
     std::sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
 
     cout << std::setw(15) << std::left << "Pavarde"

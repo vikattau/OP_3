@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <random>
+#include <stdexcept>
 #include <fstream>
 
 using std::cout;
