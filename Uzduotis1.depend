@@ -1,5 +1,9 @@
 # depslib dependency file v1.0
-1727257042 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1727273146 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+	"Mylib.h"
+	"Stud.h"
+
+1727269328 c:\users\msi\desktop\op\uzduotis1\mylib.h
 	<iostream>
 	<string>
 	<vector>
@@ -7,4 +11,10 @@
 	<algorithm>
 	<random>
 	<fstream>
+
+1727270423 c:\users\msi\desktop\op\uzduotis1\stud.h
+	"Mylib.h"
+
+1727272820 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
+	"Stud.h"
 
