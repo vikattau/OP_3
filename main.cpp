@@ -106,6 +106,9 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
         studentai.push_back(stud);
     }
 }
+bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
+    return Lok.pavarde < stud.pavarde;
+};
 void spausdinimas(const Studentas &Lok){
     cout<< std::setw(15) << std::left << Lok.pavarde
         << std::setw(15) << std::left << Lok.vardas
@@ -149,6 +152,8 @@ int main()
             valymas(A);
         }
     }
+    std::sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
+
     cout << std::setw(15) << std::left << "Pavarde"
          << std::setw(15) << std::left << "Vardas"
          << std::setw(20) << std::left << "Galutinis (Vid.)"
