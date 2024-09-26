@@ -1,10 +1,24 @@
 #include "Stud.h"
 
 void duomenuived(Studentas &Lok){
-    cout<<"Iveskite Varda: ";
-    cin>>Lok.vardas;
-    cout<< "Iveksite Pavarde: ";
-    cin>>Lok.pavarde;
+    while (true) {
+        cout << "Iveskite Varda: ";
+        std::getline(cin, Lok.vardas);
+        if (Lok.vardas.empty()) {
+            cout << "Vardas negali buti tuscias. Bandykite dar karta." << endl;
+        } else {
+            break;
+        }
+    }
+    while (true) {
+        cout << "Iveskite Pavarde: ";
+        std::getline(cin, Lok.pavarde);
+        if (Lok.pavarde.empty()) {
+            cout << "Pavarde negali buti tuscia. Bandykite dar karta." << endl;
+        } else {
+            break;
+        }
+    }
     while (true) {
         cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
         string ats;
@@ -19,20 +33,24 @@ void duomenuived(Studentas &Lok){
             cout << "Iveskite egzamino rezultata (0 - 10): ";
             while (!(cin >> Egz) || Egz < 0 || Egz > 10) {
                 cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore bad input
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cout << "Neteisingai ivedete, bandykite dar karta: ";
             }
             Lok.egz = Egz;
-
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
             int x;
             bool ivestasPazymys = false;
             while (true) {
                 cout << "Pazymys: ";
-                while (!(cin >> x) || x < 0 || x > 10) {
+                while (!(cin >> x)) {
                     cin.clear();
                     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cout << "Neteisingai ivedete, bandykite dar karta: ";
+                }
+                if (x < 0 || x > 10) {
+                    cout << "Neteisingai";
+                    continue;
                 }
                 if (x == 0) {
                     if (!ivestasPazymys) {
@@ -44,9 +62,10 @@ void duomenuived(Studentas &Lok){
                 Lok.NamuDarbai.push_back(x);
                 ivestasPazymys = true;
             }
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             break;
         } else {
-            cout << "Neteisingai ivedete! Prasome iveskite T arba N." << endl; // Invalid input for automatic grades
+            cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
         }
     }
 };

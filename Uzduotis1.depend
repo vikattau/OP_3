@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1727279056 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1727349631 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
 	"Mylib.h"
 	"Stud.h"
 
@@ -16,6 +16,6 @@
 1727270423 c:\users\msi\desktop\op\uzduotis1\stud.h
 	"Mylib.h"
 
-1727279292 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
+1727353858 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
 	"Stud.h"
 

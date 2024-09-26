@@ -5,9 +5,14 @@ int main()
 {
     vector<Studentas> Vec1;
     Studentas A;
-    cout<< "Duomenis apie studentus nuskaitysite ar ivesite ranka? Iveskite 1, jei nuskaitysite nuo failo, 0, jei ivesite ranka: "<<endl;
+    cout<< "Duomenis apie studentus nuskaitysite ar ivesite ranka? \n" <<
+        "Iveskite 1, jei nori nuskaityti nuo failo, 0 - jei duomenis ivesite ranka: ";
     int ats;
-    cin>>ats;
+    while(!(cin >> ats) || (ats != 1 && ats != 0)){
+        cout << "Netinkama ivestis. Bandykite dar karta: ";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     try{
     if(ats == 1){
         cout<< "Kuri faila norite nuskaityti? (Pasirinkite skaiciu): \n"<<
@@ -32,7 +37,7 @@ int main()
         cout<<"Kiek studentu ivesite?: ";
         int skaicius;
         while (!(cin >> skaicius) || skaicius <= 0){
-            cout << "Netinkamas skaicius, iveskite per nauja: ";
+            cout << "Netinkama ivesti, bandykite dar karta: ";
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
@@ -43,8 +48,6 @@ int main()
             Vec1.push_back(A);
             valymas(A);
         }
-    } else {
-        cout << "Neteisinga pasirinkimas. Bandyti dar karta (1-4): " << endl;
     }
     } catch (const std::runtime_error &e){
         cout << "Klaida: " << e.what() << endl;
