@@ -70,11 +70,21 @@ void duomenuived(Studentas &Lok){
     }
 };
 
-void spausdinimas(const Studentas &Lok){
-    cout<< std::setw(15) << std::left << Lok.pavarde
+void spausdinimas(const vector<Studentas> &stud){
+    cout << std::setw(15) << std::left << "Pavarde"
+         << std::setw(15) << std::left << "Vardas"
+         << std::setw(20) << std::left << "Galutinis (Vid.)"
+         << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+
+    cout << string(70, '-') << endl;
+
+    for (const auto& Lok : stud){
+        cout<< std::setw(15) << std::left << Lok.pavarde
         << std::setw(15) << std::left << Lok.vardas
         << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
         << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
+    }
+
 };
 
 void valymas(Studentas &Lok){
@@ -157,6 +167,38 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
         cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
     }
 };
+void generuotiStudentus (int studentuSkaicius, const string &failoPav){
+    std::ofstream failas(failoPav);
+    if (!failas){
+        std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
+        return;
+    }
+    failas << std::setw(15) << std::left << "Pavarde"
+           << std::setw(15) << std::left << "Vardas"
+           << std::setw(20) << std::left << "Galutinis (Vid.)"
+           << std::setw(20) << std::left << "Galutinis (Med.)" << std::endl;
+
+    failas << std::string(70, '-') << std::endl;
+
+    vector<Studentas> studentai;
+    for (int i = 1; i <= studentuSkaicius; ++i) {
+        Studentas stud;
+        stud.vardas = "Vardas" + std::to_string(i);
+        stud.pavarde = "Pavarde" + std::to_string(i);
+        atsitiktiniuBaluGeneravimas(stud);
+        studentai.push_back(stud);
+    }
+    for (const auto& Lok : studentai) {
+        failas << std::setw(15) << std::left << Lok.pavarde
+               << std::setw(15) << std::left << Lok.vardas
+               << std::setw(20) << std::left << std::fixed << std::setprecision(2)
+               << skaicGalutiniBalaVidur(Lok)
+               << std::setw(20) << std::left << std::fixed << std::setprecision(2)
+               << skaicGalutiniBalaMed(Lok) << std::endl;
+    }
+    failas.close();
+     std::cout << "Sukurtas failas: " << failoPav << " su " << studentuSkaicius << " studentais." << std::endl;
+}
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
 };
