@@ -4,9 +4,11 @@
 int main()
 {
     vector<Studentas> Vec1;
+    vector<Studentas> vargsiukai;
+    vector<Studentas> galvociai;
     Studentas A;
     cout<< "Noresite generuoti studentu failus, duomenis apie studentus nuskaityti is failo ar ivesti duomenis ranka? \n" <<
-        "Iveskite 2, jei norite generuoti failus su studentu duomenimis, 1- jei norite nuskaityti nuo failo, 0 - jei duomenis ivesite ranka: ";
+        "Iveskite 2, jei norite generuoti failus su studentu duomenimis,\n1- jei norite nuskaityti nuo failo, \n0 - jei duomenis ivesite ranka: \n";
     int ats;
     while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2)){
         cout << "Netinkama ivestis. Bandykite dar karta: ";
@@ -65,16 +67,23 @@ int main()
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
+        string failoPav;
         if (skaicius == 1){
-            generuotiStudentus(1000, "studentai_1000.txt");
+            failoPav = "studentai_1000.txt";
+            generuotiStudentus(1000, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 2){
-            generuotiStudentus(10000, "studentai_10000.txt");
+            failoPav = "studentai_10000.txt";
+            generuotiStudentus(10000, failoPav);
         }else if (skaicius == 3){
+            failoPav = "studentai_100000.txt";
             generuotiStudentus(100000, "studentai_100000.txt");
         }else if (skaicius == 4) {
-            generuotiStudentus(1000000, "studentai_1000000.txt");
+            failoPav = "studentai_1000000.txt";
+            generuotiStudentus(1000000, failoPav);
         }else if (skaicius == 5) {
-            generuotiStudentus(10000000, "studentai_10000000.txt");
+            failoPav = "studentai_10000000.txt";
+            generuotiStudentus(10000000, failoPav);
         }else{
             cout << "Klaida" << endl;
         }

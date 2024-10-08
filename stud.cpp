@@ -202,5 +202,67 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
 };
+void skaitytiSugeneruotaFaila(vector<Studentas> &studentai, const string & failoPav){
+    std::ifstream failas(failoPav);
+    if (!failas) {
+        cout << "Nepavyko nuskaityti failo: " << failoPav << endl;
+        return;
+    }
 
+    Studentas stud;
+    string line;
+    std::getline(failas, line);
+    std::getline(failas, line);
 
+    while (failas >> stud.pavarde >> stud.vardas
+           >> stud.galutinisBalasVid >> stud.galutinisBalasMed){
+            studentai.push_back(stud);
+           }
+
+    if (studentai.empty()) {
+        cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
+    }
+}
+void studentuSkirstymas(const vector<Studentas> &studentai, vector<Studentas> &vargsiukai, vector<Studentas> &galvociai){
+    for (const auto& stud : studentai){
+        if (stud.galutinisBalasVid < 5.0){
+            vargsiukai.push_back(stud);
+        } else {
+            galvociai.push_back(stud);
+        }
+    }
+}
+void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
+    std::ofstream failas(failoPav);
+    if (!failas) {
+        std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
+        return;
+    }
+
+    failas << std::setw(15) << std::left << "Pavarde"
+           << std::setw(15) << std::left << "Vardas"
+           << std::setw(20) << std::left << "Galutinis (Vid.)"
+           << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+
+    failas << std::string(70, '-') << endl;
+
+    for (const auto& s : stud) {
+        failas << std::setw(15) << std::left << s.pavarde
+               << std::setw(15) << std::left << s.vardas
+               << std::setw(20) << std::left << std::fixed << std::setprecision(2) << s.galutinisBalasVid
+               << std::setw(20) << std::left << std::fixed << std::setprecision(2) << s.galutinisBalasMed << std::endl;
+    }
+    failas.close();
+}
+void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav){
+
+    skaitytiSugeneruotaFaila(stud, failoPav);
+
+    vector<Studentas> vargsiukai, galvociai;
+    studentuSkirstymas(stud, vargsiukai, galvociai);
+
+    spausdintiIFaila(vargsiukai, "vargsiukai.txt");
+    spausdintiIFaila(galvociai, "galvociai.txt");
+
+    cout << "Failai 'vargsiukai.txt' ir 'galvociai.txt' buvo sukurti." << endl;
+}
