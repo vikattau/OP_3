@@ -23,7 +23,7 @@ void duomenuived(Studentas &Lok){
         cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
         string ats;
         cin >> ats;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         if (ats == "T" || ats == "t") {
             atsitiktiniuBaluGeneravimas(Lok);
@@ -33,11 +33,11 @@ void duomenuived(Studentas &Lok){
             cout << "Iveskite egzamino rezultata (0 - 10): ";
             while (!(cin >> Egz) || Egz < 0 || Egz > 10) {
                 cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Neteisingai ivedete, bandykite dar karta: ";
             }
             Lok.egz = Egz;
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
             int x;
             bool ivestasPazymys = false;
@@ -45,7 +45,7 @@ void duomenuived(Studentas &Lok){
                 cout << "Pazymys: ";
                 while (!(cin >> x)) {
                     cin.clear();
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Neteisingai ivedete, bandykite dar karta: ";
                 }
                 if (x < 0 || x > 10) {
@@ -62,7 +62,7 @@ void duomenuived(Studentas &Lok){
                 Lok.NamuDarbai.push_back(x);
                 ivestasPazymys = true;
             }
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
         } else {
             cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
@@ -168,6 +168,8 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
     }
 };
 void generuotiStudentus (int studentuSkaicius, const string &failoPav){
+    auto start = std::chrono::high_resolution_clock::now();
+
     std::ofstream failas(failoPav);
     if (!failas){
         std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
@@ -176,7 +178,7 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
     failas << std::setw(15) << std::left << "Pavarde"
            << std::setw(15) << std::left << "Vardas"
            << std::setw(20) << std::left << "Galutinis (Vid.)"
-           << std::setw(20) << std::left << "Galutinis (Med.)" << std::endl;
+           << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
 
     failas << std::string(70, '-') << std::endl;
 
@@ -194,10 +196,13 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
                << std::setw(20) << std::left << std::fixed << std::setprecision(2)
                << skaicGalutiniBalaVidur(Lok)
                << std::setw(20) << std::left << std::fixed << std::setprecision(2)
-               << skaicGalutiniBalaMed(Lok) << std::endl;
+               << skaicGalutiniBalaMed(Lok) << endl;
     }
     failas.close();
-     std::cout << "Sukurtas failas: " << failoPav << " su " << studentuSkaicius << " studentais." << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> laikas = end - start;
+    cout << "Sukurtas failas: " << failoPav << " su " << studentuSkaicius << " studentais. "
+        << "Uztruko: " << laikas.count() << " sekundes." << endl;
 }
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
@@ -257,6 +262,7 @@ void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
 void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav){
 
     skaitytiSugeneruotaFaila(stud, failoPav);
+    std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
 
     vector<Studentas> vargsiukai, galvociai;
     studentuSkirstymas(stud, vargsiukai, galvociai);

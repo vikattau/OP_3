@@ -9,12 +9,14 @@
 #include <random>
 #include <stdexcept>
 #include <fstream>
+#include <chrono>
 
 using std::cout;
 using std::endl;
 using std::cin;
 using std::vector;
 using std::string;
-
+using std::numeric_limits;
+using std::streamsize;
 
 #endif // MYLIB_H_INCLUDED

@@ -13,7 +13,7 @@ int main()
     while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2)){
         cout << "Netinkama ivestis. Bandykite dar karta: ";
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     try{
     if(ats == 1){
@@ -43,7 +43,7 @@ int main()
         while (!(cin >> skaicius) || skaicius <= 0){
             cout << "Netinkama ivesti, bandykite dar karta: ";
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         cin.ignore();
         for(int i=0; i<skaicius; i++){
@@ -65,7 +65,7 @@ int main()
         while(!(cin >> skaicius) || (skaicius != 1 && skaicius != 2 && skaicius != 3 && skaicius != 4 && skaicius != 5)){
             cout << "Netinkama ivestis. Bandykite dar karta: ";
             cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         string failoPav;
         if (skaicius == 1){
@@ -75,15 +75,19 @@ int main()
         }else if (skaicius == 2){
             failoPav = "studentai_10000.txt";
             generuotiStudentus(10000, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 3){
             failoPav = "studentai_100000.txt";
             generuotiStudentus(100000, "studentai_100000.txt");
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 4) {
             failoPav = "studentai_1000000.txt";
             generuotiStudentus(1000000, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 5) {
             failoPav = "studentai_10000000.txt";
             generuotiStudentus(10000000, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else{
             cout << "Klaida" << endl;
         }
