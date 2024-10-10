@@ -18,5 +18,7 @@ using std::vector;
 using std::string;
 using std::numeric_limits;
 using std::streamsize;
-
+using std::fixed;
+using std::setprecision;
+using namespace std::chrono;
 #endif // MYLIB_H_INCLUDED

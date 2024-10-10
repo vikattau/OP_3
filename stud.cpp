@@ -254,8 +254,8 @@ void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
     for (const auto& s : stud) {
         failas << std::setw(15) << std::left << s.pavarde
                << std::setw(15) << std::left << s.vardas
-               << std::setw(20) << std::left << std::fixed << std::setprecision(2) << s.galutinisBalasVid
-               << std::setw(20) << std::left << std::fixed << std::setprecision(2) << s.galutinisBalasMed << std::endl;
+               << std::setw(20) << std::left << fixed << std::setprecision(2) << s.galutinisBalasVid
+               << std::setw(20) << std::left << fixed << std::setprecision(2) << s.galutinisBalasMed << std::endl;
     }
     failas.close();
 }
@@ -271,4 +271,40 @@ void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav){
     spausdintiIFaila(galvociai, "galvociai.txt");
 
     cout << "Failai 'vargsiukai.txt' ir 'galvociai.txt' buvo sukurti." << endl;
+}
+void failuTestavimas(string failoPav, vector<Studentas>& stud) {
+    stud.clear();
+    auto start = high_resolution_clock::now();
+    skaitytiSugeneruotaFaila(stud, failoPav);
+    auto end = high_resolution_clock::now();
+    auto failoSkaitymas = duration_cast<milliseconds>(end - start).count();
+    cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
+    end = high_resolution_clock::now();
+    auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
+
+    vector<Studentas> vargsiukai, galvociai;
+    start = high_resolution_clock::now();
+    studentuSkirstymas(stud, vargsiukai, galvociai);
+    end = high_resolution_clock::now();
+    auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    spausdintiIFaila(vargsiukai, "vargsiukai.txt");
+    end = high_resolution_clock::now();
+    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Irasymo i vargsiuku faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    spausdintiIFaila(galvociai, "galvociai.txt");
+    end = high_resolution_clock::now();
+    auto gfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Irasymo i galvociai failus laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+    auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
+    cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 }

@@ -8,9 +8,12 @@ int main()
     vector<Studentas> galvociai;
     Studentas A;
     cout<< "Noresite generuoti studentu failus, duomenis apie studentus nuskaityti is failo ar ivesti duomenis ranka? \n" <<
-        "Iveskite 2, jei norite generuoti failus su studentu duomenimis,\n1- jei norite nuskaityti nuo failo, \n0 - jei duomenis ivesite ranka: \n";
+        "3 - jei norite atlikti programos veikimo greicio analize, \n" <<
+        "2 - jei norite generuoti failus su studentu duomenimis, \n" <<
+        "1 - jei norite nuskaityti nuo failo, \n" <<
+        "0 - jei duomenis ivesite ranka: \n"<< endl;
     int ats;
-    while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2)){
+    while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2 && ats != 3)){
         cout << "Netinkama ivestis. Bandykite dar karta: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -71,25 +74,37 @@ int main()
         if (skaicius == 1){
             failoPav = "studentai_1000.txt";
             generuotiStudentus(1000, failoPav);
-            isrusiuotuFailuKurimas(Vec1, failoPav);
+            //isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 2){
             failoPav = "studentai_10000.txt";
             generuotiStudentus(10000, failoPav);
-            isrusiuotuFailuKurimas(Vec1, failoPav);
+            //isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 3){
             failoPav = "studentai_100000.txt";
             generuotiStudentus(100000, "studentai_100000.txt");
-            isrusiuotuFailuKurimas(Vec1, failoPav);
+           // isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 4) {
             failoPav = "studentai_1000000.txt";
             generuotiStudentus(1000000, failoPav);
-            isrusiuotuFailuKurimas(Vec1, failoPav);
+            //isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 5) {
             failoPav = "studentai_10000000.txt";
             generuotiStudentus(10000000, failoPav);
-            isrusiuotuFailuKurimas(Vec1, failoPav);
+            //isrusiuotuFailuKurimas(Vec1, failoPav);
         }else{
             cout << "Klaida" << endl;
+        }
+    }else if (ats == 3){
+        vector<string> testuojamiFailai = {
+        "studentai_1000.txt",
+        "studentai_10000.txt",
+        "studentai_100000.txt",
+        "studentai_1000000.txt",
+        "studentai_10000000.txt"
+        };
+        for (const auto& failoPav : testuojamiFailai) {
+            cout << "Testuojamas failas: " << failoPav << endl;
+            failuTestavimas(failoPav, Vec1);
         }
     }
     } catch (const std::runtime_error &e){

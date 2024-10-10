@@ -24,6 +24,7 @@ void studentuSkirstymas(const vector<Studentas> &studentai, vector<Studentas> &v
 void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav);
 void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
+void failuTestavimas(string failoPav, vector<Studentas>& stud);
 
 
 
