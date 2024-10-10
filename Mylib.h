@@ -21,4 +21,5 @@ using std::streamsize;
 using std::fixed;
 using std::setprecision;
 using namespace std::chrono;
+using std::sort;
 #endif // MYLIB_H_INCLUDED

@@ -100,7 +100,7 @@ double vidurkioSkaic(const vector<int> &pazymiai){
     return suma/static_cast<double>(pazymiai.size());
 };
 double medianosSkaic(vector<int> pazymiai){
-    std::sort(pazymiai.begin(), pazymiai.end());
+    sort(pazymiai.begin(), pazymiai.end());
     int kiekis = pazymiai.size();
     if (kiekis % 2 == 0){
         return (pazymiai[kiekis / 2 - 1] + pazymiai[kiekis / 2]) / 2.0;
@@ -175,7 +175,7 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
         std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
         return;
     }
-    failas << std::setw(15) << std::left << "Pavarde"
+    failas << std::setw(17) << std::left << "Pavarde"
            << std::setw(15) << std::left << "Vardas"
            << std::setw(20) << std::left << "Galutinis (Vid.)"
            << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
@@ -191,7 +191,7 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
         studentai.push_back(stud);
     }
     for (const auto& Lok : studentai) {
-        failas << std::setw(15) << std::left << Lok.pavarde
+        failas << std::setw(17) << std::left << Lok.pavarde
                << std::setw(15) << std::left << Lok.vardas
                << std::setw(20) << std::left << std::fixed << std::setprecision(2)
                << skaicGalutiniBalaVidur(Lok)
@@ -200,7 +200,7 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
     }
     failas.close();
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> laikas = end - start;
+    duration<double> laikas = end - start;
     cout << "Sukurtas failas: " << failoPav << " su " << studentuSkaicius << " studentais. "
         << "Uztruko: " << laikas.count() << " sekundes." << endl;
 }
@@ -219,11 +219,14 @@ void skaitytiSugeneruotaFaila(vector<Studentas> &studentai, const string & failo
     std::getline(failas, line);
     std::getline(failas, line);
 
-    while (failas >> stud.pavarde >> stud.vardas
-           >> stud.galutinisBalasVid >> stud.galutinisBalasMed){
-            studentai.push_back(stud);
-           }
-
+    while (std::getline(failas, line)) {
+    std::istringstream iss(line);
+    if (iss >> stud.pavarde >> stud.vardas >> stud.galutinisBalasVid >> stud.galutinisBalasMed) {
+        studentai.push_back(stud);
+    } else {
+        std::cerr << "Klaida: " << line << std::endl;
+    }
+}
     if (studentai.empty()) {
         cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
     }
@@ -244,7 +247,7 @@ void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
         return;
     }
 
-    failas << std::setw(15) << std::left << "Pavarde"
+    failas << std::setw(17) << std::left << "Pavarde"
            << std::setw(15) << std::left << "Vardas"
            << std::setw(20) << std::left << "Galutinis (Vid.)"
            << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
@@ -252,7 +255,7 @@ void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
     failas << std::string(70, '-') << endl;
 
     for (const auto& s : stud) {
-        failas << std::setw(15) << std::left << s.pavarde
+        failas << std::setw(17) << std::left << s.pavarde
                << std::setw(15) << std::left << s.vardas
                << std::setw(20) << std::left << fixed << std::setprecision(2) << s.galutinisBalasVid
                << std::setw(20) << std::left << fixed << std::setprecision(2) << s.galutinisBalasMed << std::endl;
@@ -262,15 +265,18 @@ void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav) {
 void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav){
 
     skaitytiSugeneruotaFaila(stud, failoPav);
-    std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
+    sort(stud.begin(), stud.end(), rusiavimasPavarde);
 
     vector<Studentas> vargsiukai, galvociai;
     studentuSkirstymas(stud, vargsiukai, galvociai);
 
-    spausdintiIFaila(vargsiukai, "vargsiukai.txt");
-    spausdintiIFaila(galvociai, "galvociai.txt");
+    string vargsiukuFailas = failoPav + "_vargsiukai.txt";
+    string galvociuFailas = failoPav + "_galvociai.txt";
 
-    cout << "Failai 'vargsiukai.txt' ir 'galvociai.txt' buvo sukurti." << endl;
+    spausdintiIFaila(vargsiukai, vargsiukuFailas);
+    spausdintiIFaila(galvociai, galvociuFailas);
+
+    cout << "Failai " << vargsiukuFailas << "ir " << galvociuFailas << " buvo sukurti." << endl;
 }
 void failuTestavimas(string failoPav, vector<Studentas>& stud) {
     stud.clear();
@@ -281,7 +287,7 @@ void failuTestavimas(string failoPav, vector<Studentas>& stud) {
     cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
 
     start = high_resolution_clock::now();
-    std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
+    sort(stud.begin(), stud.end(), rusiavimasPavarde);
     end = high_resolution_clock::now();
     auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
     cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
@@ -293,17 +299,20 @@ void failuTestavimas(string failoPav, vector<Studentas>& stud) {
     auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
     cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
 
-    start = high_resolution_clock::now();
-    spausdintiIFaila(vargsiukai, "vargsiukai.txt");
-    end = high_resolution_clock::now();
-    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i vargsiuku faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+    string vargsiukaiFailas = failoPav + "_vargsiukai.txt";
+    string galvociaiFailas = failoPav + "_galvociai.txt";
 
     start = high_resolution_clock::now();
-    spausdintiIFaila(galvociai, "galvociai.txt");
+    spausdintiIFaila(vargsiukai, vargsiukaiFailas);
+    end = high_resolution_clock::now();
+    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Irasymo i " << vargsiukaiFailas << " faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    spausdintiIFaila(galvociai, galvociaiFailas);
     end = high_resolution_clock::now();
     auto gfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i galvociai failus laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+    cout << "Irasymo i " << galvociaiFailas << " faila laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
 
     auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
     cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;

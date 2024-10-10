@@ -30,15 +30,15 @@ int main()
         if (failas == 1){
             skaitytiFaila(Vec1, "kursiokai.txt");
         }else if (failas == 2){
-            skaitytiFaila(Vec1, "C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai10000.txt");
+            skaitytiFaila(Vec1, "studentai10000.txt");
         }else if (failas == 3){
-            skaitytiFaila(Vec1,"C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai100000.txt");
+            skaitytiFaila(Vec1,"studentai100000.txt");
         }else if (failas == 4) {
-            skaitytiFaila(Vec1, "C:\\Users\\MSI\\Desktop\\OP\\failas\\studentai1000000.txt");
+            skaitytiFaila(Vec1, "studentai1000000.txt");
         }else{
             cout << "Tokio failo nera" << endl;
         }
-        std::sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
+        sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
         spausdinimas(Vec1);
     }else if (ats == 0){
         cout<<"Kiek studentu ivesite?: ";
@@ -55,7 +55,7 @@ int main()
             Vec1.push_back(A);
             valymas(A);
         }
-        std::sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
+        sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
         spausdinimas(Vec1);
     }else if (ats == 2){
         cout << "Kiek studentu norite sugeneruoti? (iveskite atitinkama skaiciu): \n" <<
@@ -74,23 +74,23 @@ int main()
         if (skaicius == 1){
             failoPav = "studentai_1000.txt";
             generuotiStudentus(1000, failoPav);
-            //isrusiuotuFailuKurimas(Vec1, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 2){
             failoPav = "studentai_10000.txt";
             generuotiStudentus(10000, failoPav);
-            //isrusiuotuFailuKurimas(Vec1, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 3){
             failoPav = "studentai_100000.txt";
             generuotiStudentus(100000, "studentai_100000.txt");
-           // isrusiuotuFailuKurimas(Vec1, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 4) {
             failoPav = "studentai_1000000.txt";
             generuotiStudentus(1000000, failoPav);
-            //isrusiuotuFailuKurimas(Vec1, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else if (skaicius == 5) {
             failoPav = "studentai_10000000.txt";
             generuotiStudentus(10000000, failoPav);
-            //isrusiuotuFailuKurimas(Vec1, failoPav);
+            isrusiuotuFailuKurimas(Vec1, failoPav);
         }else{
             cout << "Klaida" << endl;
         }
