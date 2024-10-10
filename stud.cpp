@@ -276,7 +276,7 @@ void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav){
     spausdintiIFaila(vargsiukai, vargsiukuFailas);
     spausdintiIFaila(galvociai, galvociuFailas);
 
-    cout << "Failai " << vargsiukuFailas << "ir " << galvociuFailas << " buvo sukurti." << endl;
+    cout << "Failai " << vargsiukuFailas << " ir " << galvociuFailas << " buvo sukurti." << endl;
 }
 void failuTestavimas(string failoPav, vector<Studentas>& stud) {
     stud.clear();

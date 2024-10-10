@@ -4,8 +4,6 @@
 int main()
 {
     vector<Studentas> Vec1;
-    //vector<Studentas> vargsiukai;
-   // vector<Studentas> galvociai;
     Studentas A;
     cout<< "Noresite generuoti studentu failus, duomenis apie studentus nuskaityti is failo ar ivesti duomenis ranka? \n" <<
         "3 - jei norite atlikti programos veikimo greicio analize, \n" <<
