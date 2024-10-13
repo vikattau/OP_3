@@ -19,12 +19,11 @@ double skaicGalutiniBalaMed(const Studentas &studentas);
 void atsitiktiniuBaluGeneravimas(Studentas &Lok);
 void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
-void skaitytiSugeneruotaFaila(vector<Studentas> &studentai, const string & failoPav);
 void studentuSkirstymas(const vector<Studentas> &studentai, vector<Studentas> &vargsiukai, vector<Studentas> &galvociai);
-void spausdintiIFaila(const vector<Studentas>& stud, const string& failoPav);
-void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav);
+void rasytiIFaila(const vector<Studentas>& stud, const string& failoPav);
+void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
-void failuTestavimas(string failoPav, vector<Studentas>& stud);
+void failuTestavimas(string failoPav, vector<Studentas>& stud, int rusiavimoPasirinkimas);
 
 
 
