@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1729613462 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1729615511 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
 	"Mylib.h"
 	"Stud.h"
 	"templates.h"
@@ -26,7 +26,7 @@
 
 1729605489 source:c:\users\msi\desktop\op\uzduotis1\pasirinkimofunkcija.cpp
 
-1729614495 c:\users\msi\desktop\op\uzduotis1\templates.h
+1729615511 c:\users\msi\desktop\op\uzduotis1\templates.h
 	"Mylib.h"
 	"Stud.h"
 
