@@ -25,4 +25,5 @@ using std::setprecision;
 using namespace std::chrono;
 using std::sort;
 using std::list;
+using std::is_same;
 #endif // MYLIB_H_INCLUDED

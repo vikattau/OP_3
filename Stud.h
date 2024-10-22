@@ -11,7 +11,8 @@ struct Studentas{
 };
 //template <typename Container>
 void duomenuived(Studentas &Lok);
-void spausdinimas(const vector<Studentas> &stud);
+template <typename Container>
+void spausdinimas(const Container &stud);
 void valymas(Studentas &Lok);
 double vidurkioSkaic(const vector<int> &pazymiai);
 double medianosSkaic(vector<int> pazymiai);
@@ -26,7 +27,8 @@ void rasytiIFaila(const vector<Studentas>& stud, const string& failoPav);
 void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
 void failuTestavimas(string failoPav, vector<Studentas>& stud, int rusiavimoPasirinkimas);
-
+template <typename Container>
+void programosPasirinkimas(int ats, Container &studentai);
 
 
 #endif // STUD_H_INCLUDED

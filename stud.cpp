@@ -1,5 +1,5 @@
 #include "Stud.h"
-//template <typename Container>
+
 void duomenuived(Studentas &Lok){
     while (true) {
         cout << "Iveskite Varda: ";
@@ -69,8 +69,8 @@ void duomenuived(Studentas &Lok){
         }
     }
 };
-
-void spausdinimas(const vector<Studentas> &stud){
+template <typename Container>
+void spausdinimas(const Container &stud){
     cout << std::setw(15) << std::left << "Pavarde"
          << std::setw(15) << std::left << "Vardas"
          << std::setw(20) << std::left << "Galutinis (Vid.)"
@@ -315,3 +315,4 @@ void failuTestavimas(string failoPav, vector<Studentas>& stud, int rusiavimoPasi
     auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
     cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 }
+
