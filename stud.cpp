@@ -1,4 +1,5 @@
 #include "Stud.h"
+#include "templates.h"
 
 void duomenuived(Studentas &Lok){
     while (true) {
@@ -49,7 +50,7 @@ void duomenuived(Studentas &Lok){
                     cout << "Neteisingai ivedete, bandykite dar karta: ";
                 }
                 if (x < 0 || x > 10) {
-                    cout << "Neteisingai";
+                    cout << "Neteisingas pazymys";
                     continue;
                 }
                 if (x == 0) {
@@ -69,24 +70,6 @@ void duomenuived(Studentas &Lok){
         }
     }
 };
-template <typename Container>
-void spausdinimas(const Container &stud){
-    cout << std::setw(15) << std::left << "Pavarde"
-         << std::setw(15) << std::left << "Vardas"
-         << std::setw(20) << std::left << "Galutinis (Vid.)"
-         << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
-
-    cout << string(70, '-') << endl;
-
-    for (const auto& Lok : stud){
-        cout<< std::setw(15) << std::left << Lok.pavarde
-        << std::setw(15) << std::left << Lok.vardas
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
-    }
-
-};
-
 void valymas(Studentas &Lok){
     Lok.vardas.clear();
     Lok.pavarde.clear();
@@ -127,47 +110,6 @@ void atsitiktiniuBaluGeneravimas(Studentas &Lok){
     }
     Lok.egz = dist(mt);
 };
-template <typename Container>
-void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
-    std::ifstream failas(failoPavadinimas);
-    if (!failas) {
-        cout<< "Nepavyko nuskaityti failo"<<endl;
-        return;
-    }
-    string failoEilute;
-    std::getline(failas, failoEilute);
-    while(std::getline(failas, failoEilute)){
-        std::istringstream iss(failoEilute);
-        Studentas stud;
-
-        iss >> stud.pavarde >>stud.vardas;
-
-        if (iss.fail()){
-            cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
-            continue;
-        }
-
-        int pazymys;
-        while(iss >> pazymys){
-            if (pazymys < 0 || pazymys > 10) {
-                cout << "Faile neteisingas pazymys studentui: " << stud.vardas << " " << stud.pavarde <<endl;
-                continue;
-            }
-            stud.NamuDarbai.push_back(pazymys);
-        }
-        if (!stud.NamuDarbai.empty()) {
-            stud.egz = stud.NamuDarbai.back();
-            stud.NamuDarbai.pop_back();
-        } else {
-            cout << "Nera pazymiu studentui: " << stud.vardas << " " << stud.pavarde << endl;
-            continue;
-        }
-        studentai.push_back(stud);
-    }
-    if (studentai.empty()){
-        cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
-    }
-};
 void generuotiStudentus (int studentuSkaicius, const string &failoPav){
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -180,8 +122,8 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
         std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
         return;
     }
-    failas << std::setw(20) << std::left << "Pavarde"
-           << std::setw(20) << std::left << "Vardas";
+    failas << std::setw(20) << std::left << "Vardas"
+           << std::setw(20) << std::left << "Pavarde";
     for (int i = 1; i <= 5; ++i) {
         failas << std::setw(10) << std::left << "ND" + std::to_string(i);
     }
@@ -191,8 +133,8 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
         string pavarde = "Pavarde" + std::to_string(i);
         string vardas = "Vardas" + std::to_string(i);
 
-        failas << std::setw(20) << std::left << pavarde
-               << std::setw(20) << std::left << vardas;
+        failas << std::setw(20) << std::left << vardas
+               << std::setw(20) << std::left << pavarde;
         for (int j=0; j<5; j++){
             failas << std::setw(10) << std::left << dist(mt);
         }

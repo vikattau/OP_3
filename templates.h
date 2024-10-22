@@ -40,12 +40,19 @@ void programosPasirinkimas(int ats, Container &studentai){
             cin.ignore();
             for(int i=0; i<skaicius; i++){
                 cout<<"Iveskite informacija: "<<endl;
-//                duomenuived(A);
-//                Vec1.push_back(A);
-//                valymas(A);
+                Studentas A;
+                duomenuived(A);
+                studentai.push_back(A);
+                cout << "Studento objektas saugomas adresu: " << &studentai.back() << endl;
+                valymas(A);
             }
-//            sort(Vec1.begin(), Vec1.end(), rusiavimasPavarde);
- //           spausdinimas(Vec1);
+            if constexpr (is_same<Container, vector<Studentas>>::value) {
+                sort(studentai.begin(), studentai.end(), rusiavimasPavarde);
+            } else if constexpr (is_same<Container, list<Studentas>>::value) {
+                studentai.sort(rusiavimasPavarde);
+            }
+            spausdinimas(studentai);
+
     }else if (ats == 2){
             cout << "Kiek studentu norite sugeneruoti? (iveskite atitinkama skaiciu): \n" <<
                 "1 - 1000 studentu \n" <<
@@ -136,7 +143,7 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
         std::istringstream iss(failoEilute);
         Studentas stud;
 
-        iss >> stud.pavarde >>stud.vardas;
+        iss >> stud.vardas >>stud.pavarde;
 
         if (iss.fail()){
             cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
@@ -164,6 +171,7 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
         cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
     }
 };
+
 
 
 
