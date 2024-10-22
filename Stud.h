@@ -9,6 +9,7 @@ struct Studentas{
     double galutinisBalasVid;
     double galutinisBalasMed;
 };
+//template <typename Container>
 void duomenuived(Studentas &Lok);
 void spausdinimas(const vector<Studentas> &stud);
 void valymas(Studentas &Lok);
@@ -17,7 +18,8 @@ double medianosSkaic(vector<int> pazymiai);
 double skaicGalutiniBalaVidur(const Studentas &studentas);
 double skaicGalutiniBalaMed(const Studentas &studentas);
 void atsitiktiniuBaluGeneravimas(Studentas &Lok);
-void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas);
+template <typename Container>
+void skaitytiFaila(Container &studentai, const string & failoPavadinimas);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 void studentuSkirstymas(const vector<Studentas> &studentai, vector<Studentas> &vargsiukai, vector<Studentas> &galvociai);
 void rasytiIFaila(const vector<Studentas>& stud, const string& failoPav);

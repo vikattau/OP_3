@@ -4,11 +4,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 #include <iomanip>
 #include <algorithm>
 #include <random>
 #include <stdexcept>
 #include <fstream>
+#include <sstream>
 #include <chrono>
 
 using std::cout;
@@ -22,4 +24,5 @@ using std::fixed;
 using std::setprecision;
 using namespace std::chrono;
 using std::sort;
+using std::list;
 #endif // MYLIB_H_INCLUDED

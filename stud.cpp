@@ -1,5 +1,5 @@
 #include "Stud.h"
-
+//template <typename Container>
 void duomenuived(Studentas &Lok){
     while (true) {
         cout << "Iveskite Varda: ";
@@ -127,7 +127,8 @@ void atsitiktiniuBaluGeneravimas(Studentas &Lok){
     }
     Lok.egz = dist(mt);
 };
-void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas){
+template <typename Container>
+void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
     std::ifstream failas(failoPavadinimas);
     if (!failas) {
         cout<< "Nepavyko nuskaityti failo"<<endl;
@@ -139,7 +140,7 @@ void skaitytiFaila(vector<Studentas> &studentai, const string & failoPavadinimas
         std::istringstream iss(failoEilute);
         Studentas stud;
 
-        iss >> stud.vardas >>stud.pavarde;
+        iss >> stud.pavarde >>stud.vardas;
 
         if (iss.fail()){
             cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
