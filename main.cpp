@@ -4,6 +4,7 @@
 
 
 int main(){
+
     cout<< "Noresite generuoti studentu failus, duomenis apie studentus nuskaityti is failo ar ivesti duomenis ranka? \n" <<
         "3 - jei norite atlikti programos veikimo greicio analize, \n" <<
         "2 - jei norite generuoti failus su studentu duomenimis, \n" <<

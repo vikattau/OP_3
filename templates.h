@@ -4,6 +4,167 @@
 #include "Stud.h"
 
 template <typename Container>
+void spausdinimas(const Container &stud){
+    cout << std::setw(15) << std::left << "Pavarde"
+         << std::setw(15) << std::left << "Vardas"
+         << std::setw(20) << std::left << "Galutinis (Vid.)"
+         << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+
+    cout << string(70, '-') << endl;
+
+    for (const auto& Lok : stud){
+        cout<< std::setw(15) << std::left << Lok.pavarde
+        << std::setw(15) << std::left << Lok.vardas
+        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
+        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
+    }
+
+};
+
+template <typename Container>
+void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
+    std::ifstream failas(failoPavadinimas);
+    if (!failas) {
+        cout<< "Nepavyko nuskaityti failo"<<endl;
+        return;
+    }
+    string failoEilute;
+    std::getline(failas, failoEilute);
+    while(std::getline(failas, failoEilute)){
+        std::istringstream iss(failoEilute);
+        Studentas stud;
+
+        iss >> stud.vardas >>stud.pavarde;
+
+        if (iss.fail()){
+            cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
+            continue;
+        }
+
+        int pazymys;
+        while(iss >> pazymys){
+            if (pazymys < 0 || pazymys > 10) {
+                cout << "Faile neteisingas pazymys studentui: " << stud.vardas << " " << stud.pavarde <<endl;
+                continue;
+            }
+            stud.NamuDarbai.push_back(pazymys);
+        }
+        if (!stud.NamuDarbai.empty()) {
+            stud.egz = stud.NamuDarbai.back();
+            stud.NamuDarbai.pop_back();
+        } else {
+            cout << "Nera pazymiu studentui: " << stud.vardas << " " << stud.pavarde << endl;
+            continue;
+        }
+        studentai.push_back(stud);
+    }
+    if (studentai.empty()){
+        cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
+    }
+};
+template <typename Container>
+void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Container &galvociai) {
+    for (const auto& stud : studentai) {
+        if (skaicGalutiniBalaVidur(stud) < 5.0) {
+            vargsiukai.push_back(stud);
+        } else {
+            galvociai.push_back(stud);
+        }
+    }
+}
+template <typename Container>
+void rasytiIFaila(const Container& stud, const string& failoPav) {
+    std::ofstream failas(failoPav);
+    if (!failas) {
+        std::cerr << "Nepavyko atidaryti failo " << failoPav << std::endl;
+        return;
+    }
+
+    failas << std::setw(17) << std::left << "Pavarde"
+           << std::setw(15) << std::left << "Vardas"
+           << std::setw(20) << std::left << "Galutinis (Vid.)"
+           << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+
+    failas << std::string(70, '-') << endl;
+
+    for (const auto& s : stud) {
+        failas << std::setw(17) << std::left << s.pavarde
+               << std::setw(15) << std::left << s.vardas
+               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaVidur(s)
+               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaMed(s) << std::endl;
+    }
+    failas.close();
+}
+
+
+template <typename Container>
+void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas) {
+    stud.clear();
+    auto start = high_resolution_clock::now();
+    skaitytiFaila(stud, failoPav);
+    auto end = high_resolution_clock::now();
+    auto failoSkaitymas = duration_cast<milliseconds>(end - start).count();
+    cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    if (rusiavimoPasirinkimas == 1){
+        if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
+            std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
+        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+            stud.sort(rusiavimasPavarde);
+        }
+    } else if (rusiavimoPasirinkimas == 2) {
+         if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
+            std::sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+            });
+        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+            stud.sort([](const Studentas& a, const Studentas& b) {
+                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+            });
+        }
+    } else {
+        if constexpr (std::is_same<Container, vector<Studentas>>::value) {
+            sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            });
+        } else if constexpr (std::is_same<Container, list<Studentas>>::value) {
+            stud.sort([](const Studentas& a, const Studentas& b) {
+                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            });
+        }
+    }
+
+    end = high_resolution_clock::now();
+    auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
+
+    Container vargsiukai, galvociai;
+    start = high_resolution_clock::now();
+    studentuSkirstymas(stud, vargsiukai, galvociai);
+    end = high_resolution_clock::now();
+    auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
+
+    string vargsiukaiFailas = failoPav + "_vargsiukai.txt";
+    string galvociaiFailas = failoPav + "_galvociai.txt";
+
+    start = high_resolution_clock::now();
+    rasytiIFaila(vargsiukai, vargsiukaiFailas);
+    end = high_resolution_clock::now();
+    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Irasymo i " << vargsiukaiFailas << " faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+    start = high_resolution_clock::now();
+    rasytiIFaila(galvociai, galvociaiFailas);
+    end = high_resolution_clock::now();
+    auto gfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+    cout << "Irasymo i " << galvociaiFailas << " faila laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+    auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
+    cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
+}
+template <typename Container>
 void programosPasirinkimas(int ats, Container &studentai){
     try {
     if (ats == 1){
@@ -86,133 +247,5 @@ void programosPasirinkimas(int ats, Container &studentai){
     } catch (...){
         cout << "Ivyko nezinoma klaida." << endl;
     }
-}
-
-template <typename Container>
-void spausdinimas(const Container &stud){
-    cout << std::setw(15) << std::left << "Pavarde"
-         << std::setw(15) << std::left << "Vardas"
-         << std::setw(20) << std::left << "Galutinis (Vid.)"
-         << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
-
-    cout << string(70, '-') << endl;
-
-    for (const auto& Lok : stud){
-        cout<< std::setw(15) << std::left << Lok.pavarde
-        << std::setw(15) << std::left << Lok.vardas
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
-    }
-
-};
-
-template <typename Container>
-void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
-    std::ifstream failas(failoPavadinimas);
-    if (!failas) {
-        cout<< "Nepavyko nuskaityti failo"<<endl;
-        return;
-    }
-    string failoEilute;
-    std::getline(failas, failoEilute);
-    while(std::getline(failas, failoEilute)){
-        std::istringstream iss(failoEilute);
-        Studentas stud;
-
-        iss >> stud.vardas >>stud.pavarde;
-
-        if (iss.fail()){
-            cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
-            continue;
-        }
-
-        int pazymys;
-        while(iss >> pazymys){
-            if (pazymys < 0 || pazymys > 10) {
-                cout << "Faile neteisingas pazymys studentui: " << stud.vardas << " " << stud.pavarde <<endl;
-                continue;
-            }
-            stud.NamuDarbai.push_back(pazymys);
-        }
-        if (!stud.NamuDarbai.empty()) {
-            stud.egz = stud.NamuDarbai.back();
-            stud.NamuDarbai.pop_back();
-        } else {
-            cout << "Nera pazymiu studentui: " << stud.vardas << " " << stud.pavarde << endl;
-            continue;
-        }
-        studentai.push_back(stud);
-    }
-    if (studentai.empty()){
-        cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
-    }
-};
-
-template <typename Container>
-void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas) {
-    stud.clear();
-    auto start = high_resolution_clock::now();
-    skaitytiFaila(stud, failoPav);
-    auto end = high_resolution_clock::now();
-    auto failoSkaitymas = duration_cast<milliseconds>(end - start).count();
-    cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
-
-    start = high_resolution_clock::now();
-    if (rusiavimoPasirinkimas == 1){
-        if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
-            std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
-        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
-            stud.sort(rusiavimasPavarde);
-        }
-    } else if (rusiavimoPasirinkimas == 2) {
-         if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
-            std::sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
-            stud.sort([](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-        }
-    } else {
-        if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
-            std::sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
-            stud.sort([](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-        }
-    }
-
-    end = high_resolution_clock::now();
-    auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
-
-    vector<Studentas> vargsiukai, galvociai;
-    start = high_resolution_clock::now();
-    studentuSkirstymas(stud, vargsiukai, galvociai);
-    end = high_resolution_clock::now();
-    auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
-
-    string vargsiukaiFailas = failoPav + "_vargsiukai.txt";
-    string galvociaiFailas = failoPav + "_galvociai.txt";
-
-    start = high_resolution_clock::now();
-    rasytiIFaila(vargsiukai, vargsiukaiFailas);
-    end = high_resolution_clock::now();
-    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i " << vargsiukaiFailas << " faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
-
-    start = high_resolution_clock::now();
-    rasytiIFaila(galvociai, galvociaiFailas);
-    end = high_resolution_clock::now();
-    auto gfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i " << galvociaiFailas << " faila laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
-
-    auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
-    cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 }
 #endif // TEMPLATES_H_INCLUDED

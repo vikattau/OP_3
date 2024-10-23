@@ -1,5 +1,5 @@
 #include "Stud.h"
-#include "templates.h"
+//#include "templates.h"
 
 void duomenuived(Studentas &Lok){
     while (true) {
@@ -149,112 +149,30 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
 };
-void studentuSkirstymas(const vector<Studentas> &studentai, vector<Studentas> &vargsiukai, vector<Studentas> &galvociai){
-    for (const auto& stud : studentai){
-        if (skaicGalutiniBalaVidur(stud) < 5.0){
-            vargsiukai.push_back(stud);
-        } else {
-            galvociai.push_back(stud);
-        }
-    }
-}
-void rasytiIFaila(const vector<Studentas>& stud, const string& failoPav) {
-    std::ofstream failas(failoPav);
-    if (!failas) {
-        std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
-        return;
-    }
-
-    failas << std::setw(17) << std::left << "Pavarde"
-           << std::setw(15) << std::left << "Vardas"
-           << std::setw(20) << std::left << "Galutinis (Vid.)"
-           << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
-
-    failas << std::string(70, '-') << endl;
-
-    for (const auto& s : stud) {
-        failas << std::setw(17) << std::left << s.pavarde
-               << std::setw(15) << std::left << s.vardas
-               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaVidur(s)
-               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaMed(s) << std::endl;
-    }
-    failas.close();
-}
-void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas){
-
-    skaitytiFaila(stud, failoPav);
-
-    if (rusiavimoPasirinkimas == 1){
-        sort(stud.begin(), stud.end(), rusiavimasPavarde);
-    } else if (rusiavimoPasirinkimas == 2) {
-        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-    } else {
-        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-    }
-
-    vector<Studentas> vargsiukai, galvociai;
-    studentuSkirstymas(stud, vargsiukai, galvociai);
-
-    string vargsiukuFailas = failoPav + "_vargsiukai.txt";
-    string galvociuFailas = failoPav + "_galvociai.txt";
-
-    rasytiIFaila(vargsiukai, vargsiukuFailas);
-    rasytiIFaila(galvociai, galvociuFailas);
-
-    cout << "Failai " << vargsiukuFailas << " ir " << galvociuFailas << " buvo sukurti." << endl;
-}
-void failuTestavimas(string failoPav, vector<Studentas>& stud, int rusiavimoPasirinkimas) {
-    stud.clear();
-    auto start = high_resolution_clock::now();
-    skaitytiFaila(stud, failoPav);
-    auto end = high_resolution_clock::now();
-    auto failoSkaitymas = duration_cast<milliseconds>(end - start).count();
-    cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
-
-    start = high_resolution_clock::now();
-    if (rusiavimoPasirinkimas == 1){
-        sort(stud.begin(), stud.end(), rusiavimasPavarde);
-    } else if (rusiavimoPasirinkimas == 2) {
-        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-    } else {
-        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-    }
-
-    end = high_resolution_clock::now();
-    auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
-
-    vector<Studentas> vargsiukai, galvociai;
-    start = high_resolution_clock::now();
-    studentuSkirstymas(stud, vargsiukai, galvociai);
-    end = high_resolution_clock::now();
-    auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
-
-    string vargsiukaiFailas = failoPav + "_vargsiukai.txt";
-    string galvociaiFailas = failoPav + "_galvociai.txt";
-
-    start = high_resolution_clock::now();
-    rasytiIFaila(vargsiukai, vargsiukaiFailas);
-    end = high_resolution_clock::now();
-    auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i " << vargsiukaiFailas << " faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
-
-    start = high_resolution_clock::now();
-    rasytiIFaila(galvociai, galvociaiFailas);
-    end = high_resolution_clock::now();
-    auto gfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Irasymo i " << galvociaiFailas << " faila laikas: " << fixed << setprecision(6) << gfailoIsvedimoLaikas / 1000.0 << " s" << endl;
-
-    auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
-    cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
-}
-
+//void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas){
+//
+//    skaitytiFaila(stud, failoPav);
+//
+//    if (rusiavimoPasirinkimas == 1){
+//        sort(stud.begin(), stud.end(), rusiavimasPavarde);
+//    } else if (rusiavimoPasirinkimas == 2) {
+//        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+//                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+//            });
+//    } else {
+//        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+//                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+//            });
+//    }
+//
+//    vector<Studentas> vargsiukai, galvociai;
+//    studentuSkirstymas(stud, vargsiukai, galvociai);
+//
+//    string vargsiukuFailas = failoPav + "_vargsiukai.txt";
+//    string galvociuFailas = failoPav + "_galvociai.txt";
+//
+//    rasytiIFaila(vargsiukai, vargsiukuFailas);
+//    rasytiIFaila(galvociai, galvociuFailas);
+//
+//    cout << "Failai " << vargsiukuFailas << " ir " << galvociuFailas << " buvo sukurti." << endl;
+//}
