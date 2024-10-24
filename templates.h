@@ -5,32 +5,32 @@
 
 template <typename Container>
 void spausdinimas(const Container &stud){
-    cout << std::setw(15) << std::left << "Pavarde"
-         << std::setw(15) << std::left << "Vardas"
-         << std::setw(20) << std::left << "Galutinis (Vid.)"
-         << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+    cout << setw(15) << left << "Pavarde"
+         << setw(15) << left << "Vardas"
+         << setw(20) << left << "Galutinis (Vid.)"
+         << setw(20) << left << "Galutinis (Med.)" << endl;
 
     cout << string(70, '-') << endl;
 
     for (const auto& Lok : stud){
-        cout<< std::setw(15) << std::left << Lok.pavarde
-        << std::setw(15) << std::left << Lok.vardas
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaVidur(Lok)
-        << std::setw(20) << std::left << std::fixed << std::setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
+        cout<< setw(15) << left << Lok.pavarde
+        << setw(15) << left << Lok.vardas
+        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaVidur(Lok)
+        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
     }
 
 };
 
 template <typename Container>
 void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
-    std::ifstream failas(failoPavadinimas);
+    ifstream failas(failoPavadinimas);
     if (!failas) {
         cout<< "Nepavyko nuskaityti failo"<<endl;
         return;
     }
     string failoEilute;
-    std::getline(failas, failoEilute);
-    while(std::getline(failas, failoEilute)){
+    getline(failas, failoEilute);
+    while(getline(failas, failoEilute)){
         std::istringstream iss(failoEilute);
         Studentas stud;
 
@@ -74,24 +74,24 @@ void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Conta
 }
 template <typename Container>
 void rasytiIFaila(const Container& stud, const string& failoPav) {
-    std::ofstream failas(failoPav);
+    ofstream failas(failoPav);
     if (!failas) {
-        std::cerr << "Nepavyko atidaryti failo " << failoPav << std::endl;
+        cerr << "Nepavyko atidaryti failo " << failoPav << endl;
         return;
     }
 
-    failas << std::setw(17) << std::left << "Pavarde"
-           << std::setw(15) << std::left << "Vardas"
-           << std::setw(20) << std::left << "Galutinis (Vid.)"
-           << std::setw(20) << std::left << "Galutinis (Med.)" << endl;
+    failas << setw(17) << left << "Pavarde"
+           << setw(15) << left << "Vardas"
+           << setw(20) << left << "Galutinis (Vid.)"
+           << setw(20) << left << "Galutinis (Med.)" << endl;
 
-    failas << std::string(70, '-') << endl;
+    failas << string(70, '-') << endl;
 
     for (const auto& s : stud) {
-        failas << std::setw(17) << std::left << s.pavarde
-               << std::setw(15) << std::left << s.vardas
-               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaVidur(s)
-               << std::setw(20) << std::left << fixed << std::setprecision(2) << skaicGalutiniBalaMed(s) << std::endl;
+        failas << setw(17) << left << s.pavarde
+               << setw(15) << left << s.vardas
+               << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaVidur(s)
+               << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaMed(s) << endl;
     }
     failas.close();
 }
@@ -108,27 +108,27 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
 
     start = high_resolution_clock::now();
     if (rusiavimoPasirinkimas == 1){
-        if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
-            std::sort(stud.begin(), stud.end(), rusiavimasPavarde);
-        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+        if constexpr (is_same<Container, vector<Studentas>>::value) {
+            sort(stud.begin(), stud.end(), rusiavimasPavarde);
+        } else if constexpr (is_same<Container, list<Studentas>>::value) {
             stud.sort(rusiavimasPavarde);
         }
     } else if (rusiavimoPasirinkimas == 2) {
-         if constexpr (std::is_same<Container, std::vector<Studentas>>::value) {
-            std::sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+         if constexpr (is_same<Container, vector<Studentas>>::value) {
+            sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
                 return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
             });
-        } else if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+        } else if constexpr (is_same<Container, list<Studentas>>::value) {
             stud.sort([](const Studentas& a, const Studentas& b) {
                 return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
             });
         }
     } else {
-        if constexpr (std::is_same<Container, vector<Studentas>>::value) {
+        if constexpr (is_same<Container, vector<Studentas>>::value) {
             sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
                 return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
             });
-        } else if constexpr (std::is_same<Container, list<Studentas>>::value) {
+        } else if constexpr (is_same<Container, list<Studentas>>::value) {
             stud.sort([](const Studentas& a, const Studentas& b) {
                 return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
             });
@@ -175,21 +175,22 @@ void programosPasirinkimas(int ats, Container &studentai){
                 "4 - studentai1000000.txt \n"<<endl;
         int failas;
         cin >> failas;
-        string filename;
+        string failoPav;
         switch (failas) {
-            case 1: filename = "kursiokai.txt"; break;
-            case 2: filename = "studentai10000.txt"; break;
-            case 3: filename = "studentai100000.txt"; break;
-            case 4: filename = "studentai1000000.txt"; break;
+            case 1: failoPav = "kursiokai.txt"; break;
+            case 2: failoPav = "studentai10000.txt"; break;
+            case 3: failoPav = "studentai100000.txt"; break;
+            case 4: failoPav = "studentai1000000.txt"; break;
             default: cout << "Tokio failo nera" << endl; return;
         }
-        skaitytiFaila(studentai, filename);
+        skaitytiFaila(studentai, failoPav);
         if constexpr (is_same<Container, vector<Studentas>>::value) {
             sort(studentai.begin(), studentai.end(), rusiavimasPavarde);
         } else if constexpr (is_same<Container, list<Studentas>>::value) {
             studentai.sort(rusiavimasPavarde);
         }
         spausdinimas(studentai);
+
     }else if (ats == 0){
         cout<<"Kiek studentu ivesite?: ";
         int skaicius;

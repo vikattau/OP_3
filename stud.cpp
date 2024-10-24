@@ -3,7 +3,7 @@
 void duomenuived(Studentas &Lok){
     while (true) {
         cout << "Iveskite Varda: ";
-        std::getline(cin, Lok.vardas);
+        getline(cin, Lok.vardas);
         if (Lok.vardas.empty()) {
             cout << "Vardas negali buti tuscias. Bandykite dar karta." << endl;
         } else {
@@ -12,7 +12,7 @@ void duomenuived(Studentas &Lok){
     }
     while (true) {
         cout << "Iveskite Pavarde: ";
-        std::getline(cin, Lok.pavarde);
+        getline(cin, Lok.pavarde);
         if (Lok.pavarde.empty()) {
             cout << "Pavarde negali buti tuscia. Bandykite dar karta." << endl;
         } else {
@@ -114,33 +114,33 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(1, 10);
 
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
 
-    std::ofstream failas(failoPav);
+    ofstream failas(failoPav);
     if (!failas){
-        std::cerr << "Nepavyko atidaryti failo " << failoPav << endl;
+        cerr << "Nepavyko atidaryti failo " << failoPav << endl;
         return;
     }
-    failas << std::setw(20) << std::left << "Vardas"
-           << std::setw(20) << std::left << "Pavarde";
+    failas << setw(20) << left << "Vardas"
+           << setw(20) << left << "Pavarde";
     for (int i = 1; i <= 5; ++i) {
-        failas << std::setw(10) << std::left << "ND" + std::to_string(i);
+        failas << setw(10) << left << "ND" + to_string(i);
     }
-    failas << std::setw(10) << std::left << "Egz." << std::endl;
+    failas << setw(10) << left << "Egz." << endl;
 
     for (int i = 0; i < studentuSkaicius; i++) {
-        string pavarde = "Pavarde" + std::to_string(i);
-        string vardas = "Vardas" + std::to_string(i);
+        string pavarde = "Pavarde" + to_string(i);
+        string vardas = "Vardas" + to_string(i);
 
-        failas << std::setw(20) << std::left << vardas
-               << std::setw(20) << std::left << pavarde;
+        failas << setw(20) << left << vardas
+               << setw(20) << left << pavarde;
         for (int j=0; j<5; j++){
-            failas << std::setw(10) << std::left << dist(mt);
+            failas << setw(10) << left << dist(mt);
         }
-        failas << std::setw(10) << std::left << dist(mt) << endl;
+        failas << setw(10) << left << dist(mt) << endl;
     }
     failas.close();
-    auto end = std::chrono::high_resolution_clock::now();
+    auto end = high_resolution_clock::now();
     duration<double> laikas = end - start;
     cout << "Sukurtas failas: " << failoPav << " su " << studentuSkaicius << " studentais. "
         << "Uztruko: " << laikas.count() << " sekundes." << endl;

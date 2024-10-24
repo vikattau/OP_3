@@ -26,4 +26,11 @@ using namespace std::chrono;
 using std::sort;
 using std::list;
 using std::is_same;
+using std::setw;
+using std::left;
+using std::ifstream;
+using std::getline;
+using std::cerr;
+using std::ofstream;
+using std::to_string;
 #endif // MYLIB_H_INCLUDED
