@@ -67,6 +67,6 @@ Su 10000000 studentų:
 Testavimo pavyzdys su 10mln. studentų ir vector
 ![Ekrano kopija 2024-10-24 151940](https://github.com/user-attachments/assets/ccceb00c-f698-400a-8019-e89f4a9ecf81)
 
-Testavimo pavyzdys su ą0mln. studentų ir list
+Testavimo pavyzdys su 10mln. studentų ir list
 ![Ekrano kopija 2024-10-24 152750](https://github.com/user-attachments/assets/6cd457b2-49de-4b9d-b2a6-3c980a3476ae)
 
