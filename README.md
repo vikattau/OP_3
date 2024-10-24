@@ -17,3 +17,45 @@ Patobulinta programa dabar:
 - Failas su 1000000 studentų vidutiniškai sukuriamas per 3.3104s, nuskaitomas per 1.875s, studentai į grupes suskirstomi per 0.385s, surūšiuoti studentai išvedami į failus vidutiniškai per 2.2315s.
 - Failas su 10000000 studentų vidutiniškai sukuriamas per 34.7842s, nuskaitomas per 19.856s, studentai į grupes suskirstomi per 4.041s, surūšiuoti studentai išvedami į failus vidutiniškai per 20.453s.
 
+## V0.3
+### Programos veikimo greičio analizė list ir vector atvejais
+Su 1000 studentų:
+|Programos dalis|Laikas su vektor|Laikas su list|
+|---|---|---|
+|Duomenų nuskaitymas|0.002 s|0.003 s|
+|Rūšiavimas|0.001 s|0.001 s|
+|Dalijimas į grupes|0 s|0 s|
+|Įrašymas į failus|0.0025 s|0.0025 s|
+
+Su 10000 studentų:
+|Programos dalis|Laikas su vektor|Laikas su list|
+|---|---|---|
+|Duomenų nuskaitymas|0.021 s|0.02 s|
+|Rūšiavimas|0.023 s|0.018 s|
+|Dalijimas į grupes|0.004 s|0.003 s|
+|Įrašymas į failus|0.024 s|0.024 s|
+
+Su 100000 studentų:
+|Programos dalis|Laikas su vektor|Laikas su list|
+|---|---|---|
+|Duomenų nuskaitymas|0.19 s|0.201 s|
+|Rūšiavimas|0.31 s|0.239 s|
+|Dalijimas į grupes|0.035 s|0.049 s|
+|Įrašymas į failus|0.228 s|0.235 s|
+
+Su 1000000 studentų:
+|Programos dalis|Laikas su vektor|Laikas su list|
+|---|---|---|
+|Duomenų nuskaitymas|1.942 s|1.931 s|
+|Rūšiavimas|4.263 s|3.554 s|
+|Dalijimas į grupes|0.526 s|0.511 s|
+|Įrašymas į failus|2.324 s|2.297 s|
+
+Su 10000000 studentų:
+|Programos dalis|Laikas su vektor|Laikas su list|
+|---|---|---|
+|Duomenų nuskaitymas|19.765 s|21.641 s|
+|Rūšiavimas|52.95 s|48.23 s|
+|Dalijimas į grupes|4.573 s|6.707 s|
+|Įrašymas į failus|23.382 s|27.962 s|
+
