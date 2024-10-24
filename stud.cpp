@@ -1,5 +1,4 @@
 #include "Stud.h"
-//#include "templates.h"
 
 void duomenuived(Studentas &Lok){
     while (true) {
@@ -149,30 +148,4 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav){
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
 };
-//void isrusiuotuFailuKurimas (vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas){
-//
-//    skaitytiFaila(stud, failoPav);
-//
-//    if (rusiavimoPasirinkimas == 1){
-//        sort(stud.begin(), stud.end(), rusiavimasPavarde);
-//    } else if (rusiavimoPasirinkimas == 2) {
-//        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-//                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-//            });
-//    } else {
-//        sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-//                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-//            });
-//    }
-//
-//    vector<Studentas> vargsiukai, galvociai;
-//    studentuSkirstymas(stud, vargsiukai, galvociai);
-//
-//    string vargsiukuFailas = failoPav + "_vargsiukai.txt";
-//    string galvociuFailas = failoPav + "_galvociai.txt";
-//
-//    rasytiIFaila(vargsiukai, vargsiukuFailas);
-//    rasytiIFaila(galvociai, galvociuFailas);
-//
-//    cout << "Failai " << vargsiukuFailas << " ir " << galvociuFailas << " buvo sukurti." << endl;
-//}
+

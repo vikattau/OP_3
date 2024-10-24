@@ -2,7 +2,6 @@
 #include "Stud.h"
 #include "templates.h"
 
-
 int main(){
 
     cout<< "Noresite generuoti studentu failus, duomenis apie studentus nuskaityti is failo ar ivesti duomenis ranka? \n" <<
