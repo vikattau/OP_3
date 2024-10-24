@@ -19,6 +19,11 @@ Patobulinta programa dabar:
 
 ## V0.3
 ### Programos veikimo greičio analizė list ir vector atvejais
+Testavimo sistemos parametrai:
+-CPU: Intel(R) Core(TM) i5-10500H CPU @ 2.50GHz
+-RAM: 8 GB 
+-SSD: 256 GB Kingston NVMe SSD (OM8PDP3256B-AI1)
+
 Su 1000 studentų:
 |Programos dalis|Laikas su vektor|Laikas su list|
 |---|---|---|
@@ -58,4 +63,10 @@ Su 10000000 studentų:
 |Rūšiavimas|52.95 s|48.23 s|
 |Dalijimas į grupes|4.573 s|6.707 s|
 |Įrašymas į failus|23.382 s|27.962 s|
+
+Testavimo pavyzdys su 10mln. studentų ir vector
+![Ekrano kopija 2024-10-24 151940](https://github.com/user-attachments/assets/ccceb00c-f698-400a-8019-e89f4a9ecf81)
+
+Testavimo pavyzdys su ą0mln. studentų ir list
+![Ekrano kopija 2024-10-24 152750](https://github.com/user-attachments/assets/6cd457b2-49de-4b9d-b2a6-3c980a3476ae)
 
