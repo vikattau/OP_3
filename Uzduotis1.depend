@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1729773095 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
+1729769495 source:c:\users\msi\desktop\op\uzduotis1\main.cpp
 	"Mylib.h"
 	"Stud.h"
 	"templates.h"
 
-1729774001 c:\users\msi\desktop\op\uzduotis1\mylib.h
+1729770401 c:\users\msi\desktop\op\uzduotis1\mylib.h
 	<iostream>
 	<string>
 	<vector>
@@ -17,15 +17,15 @@
 	<sstream>
 	<chrono>
 
-1729694330 c:\users\msi\desktop\op\uzduotis1\stud.h
+1729835592 c:\users\msi\desktop\op\uzduotis1\stud.h
 	"Mylib.h"
 
-1729696608 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
+1729835592 source:c:\users\msi\desktop\op\uzduotis1\stud.cpp
 	"Stud.h"
 
 1729605489 source:c:\users\msi\desktop\op\uzduotis1\pasirinkimofunkcija.cpp
 
-1729773820 c:\users\msi\desktop\op\uzduotis1\templates.h
+1730738220 c:\users\msi\desktop\op\uzduotis1\templates.h
 	"Mylib.h"
 	"Stud.h"
 
