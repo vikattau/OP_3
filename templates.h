@@ -98,19 +98,22 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
 
 template <typename Container>
 void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
-    if constexpr (std::is_same_v<Container, std::vector<Studentas>>) {
+    if constexpr (std::is_same_v<Container, vector<Studentas>>) {
         vargsiukai.reserve(studentai.size());
 
-        auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
-            if (skaicGalutiniBalaVidur(s) < 5.0) {
-                vargsiukai.push_back(s);
-                return true;
+        auto it = studentai.begin();
+        while (it != studentai.end()) {
+            if (skaicGalutiniBalaVidur(*it) < 5.0) {
+                vargsiukai.push_back(*it);
+                std::iter_swap(it, studentai.end() - 1);
+                studentai.pop_back();
+            } else {
+                ++it;
             }
-            return false;
-        });
-        studentai.erase(it, studentai.end());
+        }
+
     } else if constexpr (std::is_same_v<Container, std::list<Studentas>>) {
-        for (auto it = studentai.begin(); it != studentai.end();) {
+       for (auto it = studentai.begin(); it != studentai.end();) {
             if (skaicGalutiniBalaVidur(*it) < 5.0) {
                 vargsiukai.push_back(*it);
                 it = studentai.erase(it);
@@ -118,29 +121,31 @@ void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
                 ++it;
             }
         }
+
     }
 }
+
 template <typename Container>
 void patikrintiAtmintiesNaudojima(const Container& studentai, const Container& vargsiukai, const Container& galvociai) {
     size_t bendrasDydis = studentai.size() * sizeof(typename Container::value_type);
     size_t vargsiukaiDydis = vargsiukai.size() * sizeof(typename Container::value_type);
     size_t galvociaiDydis = galvociai.size() * sizeof(typename Container::value_type);
 
-    std::cout << "Bendro studentø konteinerio dydis: " << bendrasDydis << " baitø\n";
-    std::cout << "Vargðiukø konteinerio dydis: " << vargsiukaiDydis << " baitø\n";
-    std::cout << "Kietiakø konteinerio dydis: " << galvociaiDydis << " baitø\n";
-    std::cout << "Bendra uþimama atmintis po suskirstymo: "
-              << (bendrasDydis + vargsiukaiDydis + galvociaiDydis) << " baitø\n" << endl;
+    std::cout << "Bendro studentu konteinerio dydis: " << bendrasDydis << " baitu\n";
+    std::cout << "Vargsiuku konteinerio dydis: " << vargsiukaiDydis << " baitu\n";
+    std::cout << "Kietiaku konteinerio dydis: " << galvociaiDydis << " baitu\n";
+    std::cout << "Bendra uzimama atmintis po suskirstymo: "
+              << (bendrasDydis + vargsiukaiDydis + galvociaiDydis) << " baitu\n" << endl;
 }
 template <typename Container>
 void patikrintiAtmintiesNaudojimaBeGalv(const Container& studentai, const Container& vargsiukai) {
     size_t bendrasDydis = studentai.size() * sizeof(typename Container::value_type);
     size_t vargsiukaiDydis = vargsiukai.size() * sizeof(typename Container::value_type);
 
-    std::cout << "Bendro studentø konteinerio dydis: " << bendrasDydis << " baitø\n";
-    std::cout << "Vargðiukø konteinerio dydis: " << vargsiukaiDydis << " baitø\n";
-    std::cout << "Bendra uþimama atmintis po suskirstymo: "
-              << (bendrasDydis + vargsiukaiDydis) << " baitø\n" << endl;
+    std::cout << "Bendro studentu konteinerio dydis: " << bendrasDydis << " baitu\n";
+    std::cout << "Vargsiuku konteinerio dydis: " << vargsiukaiDydis << " baitu\n";
+    std::cout << "Bendra uzimama atmintis po suskirstymo: "
+              << (bendrasDydis + vargsiukaiDydis) << " baitu\n" << endl;
 }
 template <typename Container>
 void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas, int strategijosPasirinkimas) {
@@ -210,7 +215,8 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + gfailoIsvedimoLaikas;
         cout << stud.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 
-        patikrintiAtmintiesNaudojima(stud, vargsiukai, galvociai);
+        //patikrintiAtmintiesNaudojima(stud, vargsiukai, galvociai);
+
     } else if (strategijosPasirinkimas == 2){
         Container vargsiukai;
         start = high_resolution_clock::now();
@@ -219,7 +225,7 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
         cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
 
-        string vargsiukaiFailas = failoPav + "_vargsiukai.txt";
+        string vargsiukaiFailas = failoPav + "_v.txt";
         string galvociukaiFailas = failoPav + "_g.txt";
 
         start = high_resolution_clock::now();
@@ -238,6 +244,36 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         cout << stud.size() + vargsiukai.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 
         patikrintiAtmintiesNaudojimaBeGalv(stud, vargsiukai);
+
+    } else if (strategijosPasirinkimas == 3){
+        if constexpr (is_same<Container, vector<Studentas>>::value) {
+            vector<Studentas> vargsiukai;
+            start = high_resolution_clock::now();
+            VectorstudentuSkaidymasIstrinant(stud, vargsiukai);
+            end = high_resolution_clock::now();
+            auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
+            cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
+
+            string vargsiukaiFailas = failoPav + "_v.txt";
+            string galvociukaiFailas = failoPav + "_g.txt";
+
+            start = high_resolution_clock::now();
+            rasytiIFaila(vargsiukai, vargsiukaiFailas);
+            end = high_resolution_clock::now();
+            auto vfailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+            cout << "Irasymo i " << vargsiukaiFailas << " faila laikas: " << fixed << setprecision(6) << vfailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+            start = high_resolution_clock::now();
+            rasytiIFaila(stud, galvociukaiFailas);
+            end = high_resolution_clock::now();
+            auto originalFailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
+            cout << "Irasymo i " << galvociukaiFailas << " faila laikas: " << fixed << setprecision(6) << originalFailoIsvedimoLaikas / 1000.0 << " s" << endl;
+
+            auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + originalFailoIsvedimoLaikas;
+            cout << stud.size() + vargsiukai.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
+
+            patikrintiAtmintiesNaudojimaBeGalv(stud, vargsiukai);
+        }
 
     }
 }
@@ -301,8 +337,11 @@ void programosPasirinkimas(int ats, Container &studentai){
         int rusiavimoPasirinkimas;
         cin >> rusiavimoPasirinkimas;
         cout << "Kaip norite isskirtyti studentus?: \n"
-            << "1 - Sukuriant du naujus vargsiuku ir galvociu failus \n"
-            << "2 - Sukuriant nauja vargsiuku faila ir istrinant tuos studentus is studentai failo \n"<< endl;
+            << "1 - Sukuriant du naujus vargsiuku ir galvociu konteinerius \n"
+            << "2 - Sukuriant nauja vargsiuku konteineri ir istrinant tuos studentus is studentai konteinerio \n";
+        if constexpr (is_same<Container, vector<Studentas>>::value) {
+            cout <<"3 - Panaudojant 2 strategija i ja itraukus efektyvesnius metodus \n" << endl;
+        }
         int strategijosPasirinkimas;
         cin >> strategijosPasirinkimas;
 

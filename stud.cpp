@@ -149,3 +149,16 @@ bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.pavarde < stud.pavarde;
 };
 
+void VectorstudentuSkaidymasIstrinant(vector<Studentas>& studentai, vector<Studentas>& vargsiukai){
+    vargsiukai.reserve(studentai.size()); // Avoid reallocations
+
+    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
+        if (skaicGalutiniBalaVidur(s) < 5.0) {
+            vargsiukai.push_back(s);
+            return true;
+        }
+            return false;
+        });
+    studentai.erase(it, studentai.end());
+}
+
