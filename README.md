@@ -1,30 +1,31 @@
 ## V1.0
 ### Programos veikimo greičio analizė pagal strategijas
 Pirma strategija (1 str.) - studentų dalijimas studentų vektorių skirstant į du naujus vektorius - vargšiukai ir galvočiai.  
-Antra strategija (2 str.) - studentų dalijimas vargšiukus studentus įkeliant į naują vektorių ir juos ištrinant iš studentai vektoriaus.
+Antra strategija (2 str.) - studentų dalijimas vargšiukus studentus įkeliant į naują vektorių ir juos ištrinant iš studentai vektoriaus.  
+Trečia strategija (3 str.) - studentų dalijimas patobulinus antrą strategiją remove_if funkcija.   
 Strategijų lyginimas vector konteinerio atveju:
 |Studentų skaičius|Programos dalis|1 str. laikas|2 str. laikas|3 str. laikas| 
 |---|---|---|---|---|
-|1000|Duomenų nuskaitymas|0.002 s|0.005 s||
-||Rūšiavimas|0.001 s|0.0015 s||
-||Dalijimas į grupes|0 s|0 s||
-||Įrašymas į failus|0.0025 s|0.0025 s||
-|10000|Duomenų nuskaitymas|0.021 s|0.02 s||
-||Rūšiavimas|0.023 s|0.023 s||
-||Dalijimas į grupes|0.004 s|0.001 s||
-||Įrašymas į failus|0.024 s|0.024 s||
-|100000|Duomenų nuskaitymas|0.19 s|0.19 s||
-||Rūšiavimas|0.31 s|0.303 s||
-||Dalijimas į grupes|0.035 s|0.017 s||
-||Įrašymas į failus|0.228 s|0.225 s||
-|1000000|Duomenų nuskaitymas|1.942 s|1.934 s||
-||Rūšiavimas|4.263 s|4.25 s||
-||Dalijimas į grupes|0.526 s|0.272 s||
-||Įrašymas į failus|2.324 s|2.305 s||
-|10000000|Duomenų nuskaitymas|19.765 s|21.265 s||
-||Rūšiavimas|52.95 s|54.1 s||
-||Dalijimas į grupes|4.573 s|3.035 s||
-||Įrašymas į failus|23.382 s|22.525 s||
+|1000|Duomenų nuskaitymas|0.002 s|0.002 s|0.002 s|
+||Rūšiavimas|0.001 s|0.001 s|0.001 s|
+||Dalijimas į grupes|0 s|0 s|0 s|
+||Įrašymas į failus|0.0025 s|0.0025 s|0.0025|
+|10000|Duomenų nuskaitymas|0.021 s|0.02 s|0.02 s|
+||Rūšiavimas|0.023 s|0.023 s|0.024 s|
+||Dalijimas į grupes|0.004 s|0.002 s|0.001 s|
+||Įrašymas į failus|0.024 s|0.024 s|0.024 s|
+|100000|Duomenų nuskaitymas|0.19 s|0.19 s|0.19 s|
+||Rūšiavimas|0.31 s|0.303 s|0.307 s|
+||Dalijimas į grupes|0.035 s|0.028 s|0.017 s|
+||Įrašymas į failus|0.228 s|0.225 s|0.227 s|
+|1000000|Duomenų nuskaitymas|1.942 s|1.934 s|1.946 s|
+||Rūšiavimas|4.263 s|4.25 s|4.28 s|
+||Dalijimas į grupes|0.526 s|0.353 s|0.27 s|
+||Įrašymas į failus|2.324 s|2.305 s|2.316 s|
+|10000000|Duomenų nuskaitymas|19.765 s|21.265 s|19.632 s|
+||Rūšiavimas|52.95 s|54.1 s|53.3 s|
+||Dalijimas į grupes|4.573 s|3.54 s|2.94 s|
+||Įrašymas į failus|23.382 s|22.525 s|22.761 s|
 
 Strategijų lyginimas list konteinerio atveju:  
 |Studentų skaičius|Programos dalis|1 str. laikas|2 str. laikas|3 str. laikas| 
