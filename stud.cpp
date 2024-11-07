@@ -150,7 +150,7 @@ bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
 };
 
 void VectorstudentuSkaidymasIstrinant(vector<Studentas>& studentai, vector<Studentas>& vargsiukai){
-    vargsiukai.reserve(studentai.size()); // Avoid reallocations
+    vargsiukai.reserve(studentai.size());
 
     auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
         if (skaicGalutiniBalaVidur(s) < 5.0) {
@@ -160,5 +160,17 @@ void VectorstudentuSkaidymasIstrinant(vector<Studentas>& studentai, vector<Stude
             return false;
         });
     studentai.erase(it, studentai.end());
+}
+void ListStudentuSkaidymasIstrinant(list<Studentas> & studentai, list<Studentas>& vargsiukai){
+
+    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
+        if (skaicGalutiniBalaVidur(s) < 5.0) {
+            vargsiukai.push_back(s);
+            return true;
+        }
+            return false;
+        });
+    studentai.erase(it, studentai.end());
+
 }
 
