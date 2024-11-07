@@ -3,3 +3,8 @@ bin/
 *.cbp 
 *.layout
 *.depend
+/build/
+*/build/
+*.o
+*.out
+*.exe
