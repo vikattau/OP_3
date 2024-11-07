@@ -1,6 +1,6 @@
 cmake CMakeLists.txt
 cmake --install .
 cmake --build .
-copy src\kursiokai.txt Debug\kursiokai.txt
+copy src\*.txt Debug\*.txt
 cd Debug\
 V1_0.exe
