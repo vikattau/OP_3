@@ -1,4 +1,15 @@
 ## V1.0
+### Naudojimo instrukcija   
+- **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
+- **Kompiliatorius**: Tam, kad galėtumėte sukompiliuoti projektą, reikia turėti C++ kompiliatorių (pvz., GCC, MSVC).
+- **Windows** (jei naudojate Windows): CMake ir `run.bat` failas buvo išbandyti Windows aplinkoje.
+### Projekto struktūra
+- **CMakeLists.txt**: Failas, naudojamas CMake projekto konfigūracijai ir kompilavimui.
+- **run.bat**: Windows `.bat` failas, skirtas paleisti programą.
+### Programos diegimas ir paleidimas
+- **Klonuokite** šį projektą į savo vietinį kompiuterį;
+- **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
+
 ### Programos veikimo greičio analizė pagal strategijas
 Pirma strategija (1 str.) - studentų dalijimas studentų vektorių skirstant į du naujus vektorius - vargšiukai ir galvočiai.  
 Antra strategija (2 str.) - studentų dalijimas vargšiukus studentus įkeliant į naują vektorių ir juos ištrinant iš studentai vektoriaus.  
@@ -51,6 +62,23 @@ Strategijų lyginimas list konteinerio atveju (laikai release versijai):
 ||Dalijimas į grupes|3.753 s|2.117 s|2.763 s|
 ||Įrašymas į failus|18.96 s|19.52 s|19.63 s|
 
+Pirmos strategijos testavimo pavyzdys su 10mln. studentų ir vector
+![Ekrano kopija 2024-10-24 151940](https://github.com/user-attachments/assets/ccceb00c-f698-400a-8019-e89f4a9ecf81)
+
+Pirmos strategijos testavimo pavyzdys su 10mln. studentų ir list
+![Ekrano kopija 2024-10-24 152750](https://github.com/user-attachments/assets/6cd457b2-49de-4b9d-b2a6-3c980a3476ae)
+
+Antros strategijos testavimo pavyzdys su 10mln. studentų ir vector
+![image](https://github.com/user-attachments/assets/4d2c50c9-d9f6-4c82-b47a-2a0d0a23ad6f)
+
+Antros strategijos testavimo pavyzdys su 10mln. studentų ir list
+![image](https://github.com/user-attachments/assets/db3ab4f9-42aa-4e9a-bf8e-dc14b85234f6)
+
+Trečios strategijos testavimo pavyzdys su 10mln. studentų ir vector
+![image](https://github.com/user-attachments/assets/6453a656-e55b-4dcd-81d3-0bf80a8f7a9a)
+
+Trečios strategijos testavimo pavyzdys su 10mln. studentų ir list
+![image](https://github.com/user-attachments/assets/e22a411d-bf8a-4763-bbec-a38c56192584)
 
 
 ## V0.3
