@@ -3,53 +3,53 @@
 Pirma strategija (1 str.) - studentų dalijimas studentų vektorių skirstant į du naujus vektorius - vargšiukai ir galvočiai.  
 Antra strategija (2 str.) - studentų dalijimas vargšiukus studentus įkeliant į naują vektorių ir juos ištrinant iš studentai vektoriaus.  
 Trečia strategija (3 str.) - studentų dalijimas patobulinus antrą strategiją remove_if funkcija.   
-Strategijų lyginimas vector konteinerio atveju:
+Strategijų lyginimas vector konteinerio atveju (laikai release versijai):
 |Studentų skaičius|Programos dalis|1 str. laikas|2 str. laikas|3 str. laikas| 
 |---|---|---|---|---|
 |1000|Duomenų nuskaitymas|0.002 s|0.002 s|0.002 s|
-||Rūšiavimas|0.001 s|0.001 s|0.001 s|
+||Rūšiavimas|0 s|0 s|0 s|
 ||Dalijimas į grupes|0 s|0 s|0 s|
-||Įrašymas į failus|0.0025 s|0.0025 s|0.0025|
-|10000|Duomenų nuskaitymas|0.021 s|0.02 s|0.02 s|
-||Rūšiavimas|0.023 s|0.023 s|0.024 s|
-||Dalijimas į grupes|0.004 s|0.002 s|0.001 s|
-||Įrašymas į failus|0.024 s|0.024 s|0.024 s|
-|100000|Duomenų nuskaitymas|0.19 s|0.19 s|0.19 s|
-||Rūšiavimas|0.31 s|0.303 s|0.307 s|
-||Dalijimas į grupes|0.035 s|0.028 s|0.017 s|
-||Įrašymas į failus|0.228 s|0.225 s|0.227 s|
-|1000000|Duomenų nuskaitymas|1.942 s|1.934 s|1.946 s|
-||Rūšiavimas|4.263 s|4.25 s|4.28 s|
-||Dalijimas į grupes|0.526 s|0.353 s|0.27 s|
-||Įrašymas į failus|2.324 s|2.305 s|2.316 s|
-|10000000|Duomenų nuskaitymas|19.765 s|21.265 s|19.632 s|
-||Rūšiavimas|52.95 s|54.1 s|53.3 s|
-||Dalijimas į grupes|4.573 s|3.54 s|2.94 s|
-||Įrašymas į failus|23.382 s|22.525 s|22.761 s|
+||Įrašymas į failus|0.0025 s|0.0025 s|0.0025 s|
+|10000|Duomenų nuskaitymas|0.018 s|0.015 s|0.015 s|
+||Rūšiavimas|0.02 s|0.02 s|0.02 s|
+||Dalijimas į grupes|0.001 s|0 s|0 s|
+||Įrašymas į failus|0.019 s|0.019 s|0.02 s|
+|100000|Duomenų nuskaitymas|0.14 s|0.135 s|0.135 s|
+||Rūšiavimas|0.031 s|0.034 s|0.033 s|
+||Dalijimas į grupes|0.014 s|0.008 s|0.005 s|
+||Įrašymas į failus|0.189 s|0.192 s|0.191 s|
+|1000000|Duomenų nuskaitymas|1.361 s|1.362 s|1.391 s|
+||Rūšiavimas|0.782 s|0.823 s|0.829 s|
+||Dalijimas į grupes|0.25 s|0.149 s|0.126 s|
+||Įrašymas į failus|2.06 s|1.98 s|1.95s|
+|10000000|Duomenų nuskaitymas|14.765 s|14.129 s|19.632 s|
+||Rūšiavimas|9.25 s|9.19 s|53.3 s|
+||Dalijimas į grupes|2.833 s|1.313 s|1.30 s|
+||Įrašymas į failus|19.43 s|19.22 s|19.17 s|
 
-Strategijų lyginimas list konteinerio atveju:  
+Strategijų lyginimas list konteinerio atveju (laikai release versijai):  
 |Studentų skaičius|Programos dalis|1 str. laikas|2 str. laikas|3 str. laikas| 
 |---|---|---|---|---|
-|1000|Duomenų nuskaitymas|0.003 s|0.003 s||
-||Rūšiavimas|0.001 s|0.001 s||
-||Dalijimas į grupes|0 s|0 s||
-||Įrašymas į failus|0.0025 s|0.0025 s||
-|10000|Duomenų nuskaitymas|0.02 s|0.02 s||
-||Rūšiavimas|0.018 s|0.018 s||
-||Dalijimas į grupes|0.003 s|0.002 s||
-||Įrašymas į failus|0.024 s|0.024 s||
-|100000|Duomenų nuskaitymas|0.201 s|0.191 s||
-||Rūšiavimas|0.239 s|0.24 s||
-||Dalijimas į grupes|0.049 s|0.033 s||
-||Įrašymas į failus|0.235 s|0.23 s||
-|1000000|Duomenų nuskaitymas|1.931 s|2.017 s||
-||Rūšiavimas|3.554 s|3.543 s||
-||Dalijimas į grupes|0.511 s|0.378 s||
-||Įrašymas į failus|2.297 s|2.444 s||
-|10000000|Duomenų nuskaitymas|21.641 s|20.155 s||
-||Rūšiavimas|48.23 s|46.65 s||
-||Dalijimas į grupes|6.707 s|4.22 s||
-||Įrašymas į failus|27.962 s|23.782 s||
+|1000|Duomenų nuskaitymas|0.003 s|0.002 s|0.002 s|
+||Rūšiavimas|0 s|0 s|0 s|
+||Dalijimas į grupes|0 s|0 s|0 s|
+||Įrašymas į failus|0.0025 s|0.002 s|0.002 s|
+|10000|Duomenų nuskaitymas|0.016 s|0.014 s|0.015 s|
+||Rūšiavimas|0.001 s|0.002 s|0.002 s|
+||Dalijimas į grupes|0.001 s|0 s|0 s|
+||Įrašymas į failus|0.019 s|0.021 s|0.021 s|
+|100000|Duomenų nuskaitymas|0.139 s|0.138 s|0.141 s|
+||Rūšiavimas|0.034 s|0.035 s|0.036 s|
+||Dalijimas į grupes|0.031 s|0.015 s|0.024 s|
+||Įrašymas į failus|0.188 s|0.201 s|0.192 s|
+|1000000|Duomenų nuskaitymas|1.383 s|1.385 s|1.381 s|
+||Rūšiavimas|0.754 s|0.887 s|0.724 s|
+||Dalijimas į grupes|0.395 s|0.192 s|0.26 s|
+||Įrašymas į failus|1.897 s|2.067 s|2.031 s|
+|10000000|Duomenų nuskaitymas|13.82 s|13.91 s|14.21 s|
+||Rūšiavimas|9.89 s|9.92 s|9.44 s|
+||Dalijimas į grupes|3.753 s|2.117 s|2.763 s|
+||Įrašymas į failus|18.96 s|19.52 s|19.63 s|
 
 
 
