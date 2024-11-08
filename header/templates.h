@@ -98,31 +98,60 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
 
 template <typename Container>
 void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
-    if constexpr (std::is_same_v<Container, vector<Studentas>>) {
 
-        for (const auto& student : studentai) {
-        if (skaicGalutiniBalaVidur(student) < 5.0) {
-            vargsiukai.push_back(student);
-            }
-        }
-
-        studentai.erase(std::remove_if(studentai.begin(), studentai.end(), [](const auto& student) {
-            return skaicGalutiniBalaVidur(student) < 5.0;
-        }), studentai.end());
-
-    } else if constexpr (std::is_same_v<Container, std::list<Studentas>>) {
-       for (auto it = studentai.begin(); it != studentai.end();) {
-            if (skaicGalutiniBalaVidur(*it) < 5.0) {
-                vargsiukai.push_back(*it);
-                it = studentai.erase(it);
-            } else {
-                ++it;
-            }
-        }
-
+    for (auto& student : studentai) {
+        student.galutinisBalasVid = skaicGalutiniBalaVidur(student);
     }
-}
 
+    if constexpr (std::is_same_v<Container, std::list<typename Container::value_type>>) {
+        studentai.sort([](const auto& a, const auto& b) {
+            return a.galutinisBalasVid < b.galutinisBalasVid;
+        });
+    } else {
+        std::sort(studentai.begin(), studentai.end(), [](const auto& a, const auto& b) {
+            return a.galutinisBalasVid < b.galutinisBalasVid;
+        });
+    }
+
+    auto boundary = studentai.begin();
+    while (boundary != studentai.end() && boundary->galutinisBalasVid < 5.0) {
+        ++boundary;
+    }
+
+    vargsiukai.insert(vargsiukai.end(), studentai.begin(), boundary);
+
+    studentai.erase(studentai.begin(), boundary);
+}
+template <typename Container>
+void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
+    if (rusiavimoPasirinkimas == 1){
+            if constexpr (is_same<Container, vector<Studentas>>::value) {
+                sort(stud.begin(), stud.end(), rusiavimasPavarde);
+            } else if constexpr (is_same<Container, list<Studentas>>::value) {
+                stud.sort(rusiavimasPavarde);
+            }
+    } else if (rusiavimoPasirinkimas == 2) {
+            if constexpr (is_same<Container, vector<Studentas>>::value) {
+                sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+                    return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+            });
+            } else if constexpr (is_same<Container, list<Studentas>>::value) {
+            stud.sort([](const Studentas& a, const Studentas& b) {
+                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+            });
+            }
+    } else {
+            if constexpr (is_same<Container, vector<Studentas>>::value) {
+                sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
+                    return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            });
+            } else if constexpr (is_same<Container, list<Studentas>>::value) {
+                stud.sort([](const Studentas& a, const Studentas& b) {
+                    return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            });
+            }
+        }
+}
 template <typename Container>
 void patikrintiAtmintiesNaudojima(const Container& studentai, const Container& vargsiukai, const Container& galvociai) {
     size_t bendrasDydis = studentai.size() * sizeof(typename Container::value_type);
@@ -154,40 +183,13 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
     auto failoSkaitymas = duration_cast<milliseconds>(end - start).count();
     cout << "Failo is " << stud.size() << " irasu nuskaitymo laikas: " << fixed << setprecision(6) << failoSkaitymas / 1000.0 << " s" << endl;
 
-    start = high_resolution_clock::now();
-    if (rusiavimoPasirinkimas == 1){
-        if constexpr (is_same<Container, vector<Studentas>>::value) {
-            sort(stud.begin(), stud.end(), rusiavimasPavarde);
-        } else if constexpr (is_same<Container, list<Studentas>>::value) {
-            stud.sort(rusiavimasPavarde);
-        }
-    } else if (rusiavimoPasirinkimas == 2) {
-         if constexpr (is_same<Container, vector<Studentas>>::value) {
-            sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-        } else if constexpr (is_same<Container, list<Studentas>>::value) {
-            stud.sort([](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
-            });
-        }
-    } else {
-        if constexpr (is_same<Container, vector<Studentas>>::value) {
-            sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-        } else if constexpr (is_same<Container, list<Studentas>>::value) {
-            stud.sort([](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
-            });
-        }
-    }
-
-    end = high_resolution_clock::now();
-    auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
-    cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
-
     if (strategijosPasirinkimas == 1){
+        start = high_resolution_clock::now();
+        rusiavimoBudai(stud, rusiavimoPasirinkimas);
+        end = high_resolution_clock::now();
+        auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
+        cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
+
         Container vargsiukai, galvociai;
         start = high_resolution_clock::now();
         studentuSkirstymas(stud, vargsiukai, galvociai);
@@ -223,6 +225,13 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
         cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
 
+        start = high_resolution_clock::now();
+        rusiavimoBudai(stud, rusiavimoPasirinkimas);
+        rusiavimoBudai(vargsiukai, rusiavimoPasirinkimas);
+        end = high_resolution_clock::now();
+        auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
+        cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
+
         string vargsiukaiFailas = failoPav + "_v.txt";
         string galvociukaiFailas = failoPav + "_g.txt";
 
@@ -238,16 +247,22 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         auto originalFailoIsvedimoLaikas = duration_cast<milliseconds>(end - start).count();
         cout << "Irasymo i " << galvociukaiFailas << " faila laikas: " << fixed << setprecision(6) << originalFailoIsvedimoLaikas / 1000.0 << " s" << endl;
 
-        auto visasLaikas = failoSkaitymas + rusiavimoLaikas + skirstymoLaikas + vfailoIsvedimoLaikas + originalFailoIsvedimoLaikas;
+        auto visasLaikas = failoSkaitymas  + skirstymoLaikas + rusiavimoLaikas + vfailoIsvedimoLaikas + originalFailoIsvedimoLaikas;
         cout << stud.size() + vargsiukai.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 
         //patikrintiAtmintiesNaudojimaBeGalv(stud, vargsiukai);
 
     } else if (strategijosPasirinkimas == 3){
+        start = high_resolution_clock::now();
+        rusiavimoBudai(stud, rusiavimoPasirinkimas);
+        end = high_resolution_clock::now();
+        auto rusiavimoLaikas = duration_cast<milliseconds>(end - start).count();
+        cout << "Rusiavimo laikas: " << fixed << setprecision(6) << rusiavimoLaikas / 1000.0 << " s" << endl;
+
         if constexpr (is_same<Container, vector<Studentas>>::value) {
             vector<Studentas> vargsiukai;
             start = high_resolution_clock::now();
-            VectorstudentuSkaidymasIstrinant(stud, vargsiukai);
+            VectorstudentuSkaidymas(stud, vargsiukai);
             end = high_resolution_clock::now();
             auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
             cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
@@ -275,7 +290,7 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
         }else if constexpr (is_same<Container, list<Studentas>>::value) {
             list<Studentas> vargsiukai;
             start = high_resolution_clock::now();
-            ListStudentuSkaidymasIstrinant(stud, vargsiukai);
+            ListStudentuSkaidymas(stud, vargsiukai);
             end = high_resolution_clock::now();
             auto skirstymoLaikas = duration_cast<milliseconds>(end - start).count();
             cout << "Dalijimo i dvi grupes laikas: " << fixed << setprecision(6) << skirstymoLaikas / 1000.0 << " s" << endl;
@@ -299,7 +314,8 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
             cout << stud.size() + vargsiukai.size() << " irasu testo laikas: " << fixed << setprecision(6) << visasLaikas / 1000.0 << " s" << endl << endl;
 
     }
-}}
+    }
+}
 template <typename Container>
 void programosPasirinkimas(int ats, Container &studentai){
     try {

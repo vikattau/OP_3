@@ -19,6 +19,6 @@ void atsitiktiniuBaluGeneravimas(Studentas &Lok);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
-void VectorstudentuSkaidymasIstrinant(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
-void ListStudentuSkaidymasIstrinant(list<Studentas> & studentai, list<Studentas>& vargsiukai);
+void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
+void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
 #endif // STUD_H_INCLUDED
