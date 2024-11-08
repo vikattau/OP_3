@@ -99,18 +99,16 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
 template <typename Container>
 void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
     if constexpr (std::is_same_v<Container, vector<Studentas>>) {
-        vargsiukai.reserve(studentai.size());
 
-        auto it = studentai.begin();
-        while (it != studentai.end()) {
-            if (skaicGalutiniBalaVidur(*it) < 5.0) {
-                vargsiukai.push_back(*it);
-                std::iter_swap(it, studentai.end() - 1);
-                studentai.pop_back();
-            } else {
-                ++it;
+        for (const auto& student : studentai) {
+        if (skaicGalutiniBalaVidur(student) < 5.0) {
+            vargsiukai.push_back(student);
             }
         }
+
+        studentai.erase(std::remove_if(studentai.begin(), studentai.end(), [](const auto& student) {
+            return skaicGalutiniBalaVidur(student) < 5.0;
+        }), studentai.end());
 
     } else if constexpr (std::is_same_v<Container, std::list<Studentas>>) {
        for (auto it = studentai.begin(); it != studentai.end();) {
