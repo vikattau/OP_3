@@ -26,16 +26,16 @@ Strategijų lyginimas vector konteinerio atveju (laikai release versijai):
 ||Dalijimas į grupes|0.001 s|0.001 s|0 s|
 ||Įrašymas į failus|0.019 s|0.019 s|0.02 s|
 |100000|Duomenų nuskaitymas|0.14 s|0.135 s|0.135 s|
-||Rūšiavimas|0.031 s|0.036 s|0.033 s|
+||Rūšiavimas|0.031 s|0.036 s|0.014 s|
 ||Dalijimas į grupes|0.014 s|0.025 s|0.005 s|
 ||Įrašymas į failus|0.189 s|0.192 s|0.191 s|
 |1000000|Duomenų nuskaitymas|1.361 s|1.362 s|1.391 s|
 ||Rūšiavimas|0.782 s|0.823 s|0.829 s|
-||Dalijimas į grupes|0.25 s|0.367 s|0.126 s|
+||Dalijimas į grupes|0.25 s|0.367 s|0.182 s|
 ||Įrašymas į failus|2.06 s|1.98 s|1.95s|
 |10000000|Duomenų nuskaitymas|14.765 s|14.129 s|19.632 s|
-||Rūšiavimas|9.25 s|9.19 s|53.3 s|
-||Dalijimas į grupes|2.833 s|5.781 s|1.30 s|
+||Rūšiavimas|9.25 s|9.19 s|9.23 s|
+||Dalijimas į grupes|2.833 s|5.781 s|1.672 s|
 ||Įrašymas į failus|19.43 s|19.22 s|19.17 s|
 
 Strategijų lyginimas list konteinerio atveju (laikai release versijai):  
@@ -51,15 +51,15 @@ Strategijų lyginimas list konteinerio atveju (laikai release versijai):
 ||Įrašymas į failus|0.019 s|0.021 s|0.021 s|
 |100000|Duomenų nuskaitymas|0.139 s|0.138 s|0.141 s|
 ||Rūšiavimas|0.034 s|0.035 s|0.036 s|
-||Dalijimas į grupes|0.031 s|0.043 s|0.024 s|
+||Dalijimas į grupes|0.031 s|0.043 s|0.025 s|
 ||Įrašymas į failus|0.188 s|0.201 s|0.192 s|
 |1000000|Duomenų nuskaitymas|1.383 s|1.385 s|1.381 s|
 ||Rūšiavimas|0.754 s|0.887 s|0.724 s|
-||Dalijimas į grupes|0.395 s|0.885 s|0.26 s|
+||Dalijimas į grupes|0.395 s|0.885 s|0.365 s|
 ||Įrašymas į failus|1.897 s|2.067 s|2.031 s|
 |10000000|Duomenų nuskaitymas|13.82 s|13.91 s|14.21 s|
 ||Rūšiavimas|9.89 s|9.92 s|9.44 s|
-||Dalijimas į grupes|3.753 s|9.891 s|2.763 s|
+||Dalijimas į grupes|3.753 s|9.891 s|2.981 s|
 ||Įrašymas į failus|18.96 s|19.52 s|19.63 s|
 
 Pirmos strategijos testavimo pavyzdys su 10mln. studentų ir vector
