@@ -33,4 +33,5 @@ using std::getline;
 using std::cerr;
 using std::ofstream;
 using std::to_string;
+using std::istream;
 #endif // MYLIB_H_INCLUDED
