@@ -73,7 +73,6 @@ void Studentas::valymas(){
     vardas.clear();
     pavarde.clear();
     nd.clear();
-   // egzaminas.clear();
 };
 //double vidurkioSkaic(const vector<int> &pazymiai){
 //    int suma = 0;
@@ -91,18 +90,18 @@ void Studentas::valymas(){
 //        return pazymiai[kiekis /2];
 //    }
 //};
-double Studentas::skaicGalutiniBalaVidur() const {
+double skaicGalutiniBalaVidur(const Studentas &studentas){
     double vidutinisND = 0.0;
-    for (int grade : nd) {
+    for (int grade : studentas.getNd()) {
         vidutinisND += grade;
     }
-    vidutinisND /= nd.size();
-    return (vidutinisND * 0.4) + (egzaminas * 0.6);
+    vidutinisND /= studentas.getNd().size();
+    return (vidutinisND * 0.4) + (studentas.getEgz() * 0.6);
 }
-double Studentas::skaicGalutiniBalaMed() const {
-    if (nd.empty()) return 0.0;
+double skaicGalutiniBalaMed(const Studentas &studentas){
+    if (studentas.getNd().empty()) return 0.0;
 
-    vector<int> sortedNd = nd;
+    vector<int> sortedNd = studentas.getNd();
     sort(sortedNd.begin(), sortedNd.end());
 
     size_t size = sortedNd.size();
@@ -113,7 +112,7 @@ double Studentas::skaicGalutiniBalaMed() const {
         medianaNd = sortedNd[size / 2];
     }
 
-    return (medianaNd * 0.4) + (egzaminas * 0.6);
+    return (medianaNd * 0.4) + (studentas.getEgz() * 0.6);
 }
 void Studentas::atsitiktiniuBaluGeneravimas() {
     std::random_device rd;

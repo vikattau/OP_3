@@ -15,8 +15,8 @@ void spausdinimas(const Container &stud){
     for (const auto& Lok : stud){
         cout<< setw(15) << left << Lok.getPavarde()
         << setw(15) << left << Lok.getVardas()
-        << setw(20) << left << fixed << setprecision(2) << Lok.skaicGalutiniBalaVidur()
-        << setw(20) << left << fixed << setprecision(2) << Lok.skaicGalutiniBalaMed() << endl;
+        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaVidur(Lok)
+        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
     }
 
 };

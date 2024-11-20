@@ -26,9 +26,6 @@ public:
     void atsitiktiniuBaluGeneravimas();
     void valymas();
 
-    double skaicGalutiniBalaVidur() const;
-    double skaicGalutiniBalaMed() const;
-
 
 
 };
@@ -36,8 +33,8 @@ public:
 //void valymas(Studentas &Lok);
 //double vidurkioSkaic(const vector<int> &pazymiai);
 //double medianosSkaic(vector<int> pazymiai);
-//double skaicGalutiniBalaVidur(const Studentas &studentas);
-//double skaicGalutiniBalaMed(const Studentas &studentas);
+double skaicGalutiniBalaVidur(const Studentas &studentas);
+double skaicGalutiniBalaMed(const Studentas &studentas);
 //void atsitiktiniuBaluGeneravimas(Studentas &Lok);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav, int rusiavimoPasirinkimas);
