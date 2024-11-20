@@ -1,3 +1,18 @@
+## V1.1
+### Programų greičio analizė 
+Programų su struc ir class palyginimas naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
+
+|Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
+|---|---|---|---|
+|100000|Duomenų nuskaitymas|0.135 s| s|
+||Rūšiavimas|0.014 s| s|
+||Dalijimas į grupes|0.005 s| s|
+||Įrašymas į failus|0.191 s| s|
+|1000000|Duomenų nuskaitymas|1.391 s| s|
+||Rūšiavimas|0.829 s| s|
+||Dalijimas į grupes|0.182 s| s|
+||Įrašymas į failus|1.95 s| s|
+
 ## V1.0
 ### Naudojimo instrukcija   
 - **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
