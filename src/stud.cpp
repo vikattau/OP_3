@@ -73,23 +73,8 @@ void Studentas::valymas(){
     vardas.clear();
     pavarde.clear();
     nd.clear();
+    egzaminas = 0;
 };
-//double vidurkioSkaic(const vector<int> &pazymiai){
-//    int suma = 0;
-//    for(int pazymys : pazymiai){
-//        suma += pazymys;
-//    };
-//    return suma/static_cast<double>(pazymiai.size());
-//};
-//double medianosSkaic(vector<int> pazymiai){
-//    sort(pazymiai.begin(), pazymiai.end());
-//    int kiekis = pazymiai.size();
-//    if (kiekis % 2 == 0){
-//        return (pazymiai[kiekis / 2 - 1] + pazymiai[kiekis / 2]) / 2.0;
-//    } else {
-//        return pazymiai[kiekis /2];
-//    }
-//};
 double skaicGalutiniBalaVidur(const Studentas &studentas){
     double vidutinisND = 0.0;
     for (int grade : studentas.getNd()) {
