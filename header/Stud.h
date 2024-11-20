@@ -41,4 +41,5 @@ void isrusiuotuFailuKurimas(vector<Studentas> &stud, const string& failoPav, int
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
 void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
 void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
+
 #endif // STUD_H_INCLUDED

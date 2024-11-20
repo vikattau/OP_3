@@ -1,0 +1,8 @@
+Vardas Pavardė ND1 ND2 ND3 ND4 ND5 Egzaminas
+Mantas Zukauskas 9 8 7 5 4 10
+Karolina Petraite 10 9 6 4 8 6
+Lukas Kavaliauskas 10 8 6 4 8 10
+Egle Jonaityte 7 8 4 9 10 8
+Dainius Stankevicius 9 8 5 10 9 9
+Ieva Kazlauskaite 10 9 8 5 4 10
+Povilas Venskus 9 8 7 10 8 10

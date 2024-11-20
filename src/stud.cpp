@@ -165,24 +165,24 @@ bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud){
     return Lok.getPavarde() < stud.getPavarde();
 };
 
-//void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai){
-//    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
-//        if (skaicGalutiniBalaVidur(s) < 5.0) {
-//            vargsiukai.push_back(s);
-//            return true;
-//        }
-//            return false;
-//        });
-//    studentai.erase(it, studentai.end());
-//}
-//void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai){
-//    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
-//        if (skaicGalutiniBalaVidur(s) < 5.0) {
-//            vargsiukai.push_back(s);
-//            return true;
-//        }
-//            return false;
-//        });
-//    studentai.erase(it, studentai.end());
-//}
+void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai){
+    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
+        if (skaicGalutiniBalaVidur(s) < 5.0) {
+            vargsiukai.push_back(s);
+            return true;
+        }
+            return false;
+        });
+    studentai.erase(it, studentai.end());
+}
+void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai){
+    auto it = std::remove_if(studentai.begin(), studentai.end(), [&](const Studentas& s) {
+        if (skaicGalutiniBalaVidur(s) < 5.0) {
+            vargsiukai.push_back(s);
+            return true;
+        }
+            return false;
+        });
+    studentai.erase(it, studentai.end());
+}
 
