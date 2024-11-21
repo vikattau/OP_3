@@ -142,7 +142,7 @@ void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
     } else if (rusiavimoPasirinkimas == 2) {
             if constexpr (is_same<Container, vector<Studentas>>::value) {
                 sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                    return a.galutinisBalasVidur < b.galutinisBalasVidur;
+                    return a.galutinisBalasVidur > b.galutinisBalasVidur;
             });
             } else if constexpr (is_same<Container, list<Studentas>>::value) {
             stud.sort([](const Studentas& a, const Studentas& b) {
@@ -156,7 +156,7 @@ void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
             });
             } else if constexpr (is_same<Container, list<Studentas>>::value) {
                 stud.sort([](const Studentas& a, const Studentas& b) {
-                    return a.galutinisBalasVidur > b.galutinisBalasVidur;
+                    return a.galutinisBalasVidur < b.galutinisBalasVidur;
             });
             }
         }
