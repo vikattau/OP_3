@@ -15,32 +15,32 @@ Programų su struc ir class palyginimas naudojant vector, 3 strategiją (student
 
 |Flag'as|Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
 |---|---|---|---|---|
-|O1|100000|Duomenų nuskaitymas|0.135 s|0.204 s|
-|||Rūšiavimas|0.035 s|1.117 s|
+|O1|100000|Duomenų nuskaitymas|0.135 s|0.291 s|
+|||Rūšiavimas|0.035 s|0.167 s|
 |||Dalijimas į grupes|0.014 s|0.05 s|
-|||Įrašymas į failus|0.191 s|0.254 s|
-||1000000|Duomenų nuskaitymas|1.391 s|2.051 s|
-|||Rūšiavimas|0.829 s|13.604 s|
-|||Dalijimas į grupes|0.188 s|0.545 s|
-|||Įrašymas į failus|1.95 s|2.491 s|
-|O2|100000|Duomenų nuskaitymas|0.142 s|0.204 s|
-|||Rūšiavimas|0.033 s|1.117 s|
+|||Įrašymas į failus|0.191 s|0.192 s|
+||1000000|Duomenų nuskaitymas|1.391 s|3.122 s|
+|||Rūšiavimas|0.829 s|2.223 s|
+|||Dalijimas į grupes|0.188 s|0.512 s|
+|||Įrašymas į failus|1.95 s|1.934 s|
+|O2|100000|Duomenų nuskaitymas|0.142 s|0.308 s|
+|||Rūšiavimas|0.033 s|0.177 s|
 |||Dalijimas į grupes|0.01 s|0.05 s|
-|||Įrašymas į failus|0.198 s|0.254 s|
-||1000000|Duomenų nuskaitymas|1.391 s|2.051 s|
-|||Rūšiavimas|0.639 s|13.604 s|
-|||Dalijimas į grupes|0.149 s|0.521 s|
-|||Įrašymas į failus|1.95 s|2.478 s|
-|O3|100000|Duomenų nuskaitymas|0.135 s|0.204 s|
-|||Rūšiavimas|0.032 s|1.128 s|
-|||Dalijimas į grupes|0.007 s|0.05 s|
-|||Įrašymas į failus|0.191 s|0.250 s|
-||1000000|Duomenų nuskaitymas|1.365 s|2.017 s|
-|||Rūšiavimas|0.639 s|13.604 s|
-|||Dalijimas į grupes|0.148 s|0.488 s|
-|||Įrašymas į failus|1.89 s|2.506 s|
+|||Įrašymas į failus|0.198 s|0.192 s|
+||1000000|Duomenų nuskaitymas|1.391 s|3.121 s|
+|||Rūšiavimas|0.639 s|2.253 s|
+|||Dalijimas į grupes|0.149 s|0.498 s|
+|||Įrašymas į failus|1.95 s|1.922 s|
+|O3|100000|Duomenų nuskaitymas|0.135 s|0.302 s|
+|||Rūšiavimas|0.032 s|0.175 s|
+|||Dalijimas į grupes|0.007 s|0.052 s|
+|||Įrašymas į failus|0.191 s|0.194 s|
+||1000000|Duomenų nuskaitymas|1.365 s|3.210 s|
+|||Rūšiavimas|0.639 s|2.253 s|
+|||Dalijimas į grupes|0.148 s|0.491 s|
+|||Įrašymas į failus|1.89 s|1.955 s|
 
-.exe failo dydis projekte su struktūra - 333KB, projekte su klase - 345KB.
+.exe failo dydis projekte su struktūra - 333KB, projekte su klase - 340KB.
 
 ## V1.0
 ### Naudojimo instrukcija   
