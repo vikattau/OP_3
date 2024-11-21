@@ -4,24 +4,24 @@
 
 class Studentas {
 private:
-    string vardas;
-    string pavarde;
-    int egzaminas;
-    vector<int> nd;
+    string vardas_;
+    string pavarde_;
+    vector<int> nd_;
+    int egzaminas_;
 public:
     Studentas(const string& vardas = "", const string& pavarde = "",
-              const vector<int>& nd = {}, int egzaminas = 0)
-        : vardas(vardas), pavarde(pavarde), nd(nd), egzaminas(egzaminas) {}
+            const vector<int>& nd = {}, int egzaminas = 0)
+        : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas) {}
 
-    string getVardas() const { return vardas; }
-    string getPavarde() const { return pavarde; }
-    vector<int> getNd() const { return nd; }
-    int getEgz() const { return egzaminas; }
+    string getVardas() const { return vardas_; }
+    string getPavarde() const { return pavarde_; }
+    vector<int> getNd() const { return nd_; }
+    int getEgz() const { return egzaminas_; }
 
-    void setVardas(const string& v) { vardas = v; }
-    void setPavarde(const string& p) { pavarde = p; }
-    void setPazymiai(const vector<int>& pazymiai) { nd = pazymiai; }
-    void setEgzaminas(int egz) { egzaminas = egz; }
+    void setVardas(const string& v) { vardas_ = v; }
+    void setPavarde(const string& p) { pavarde_ = p; }
+    void setPazymiai(const vector<int>& pazymiai) { nd_ = pazymiai; }
+    void setEgzaminas(int egz) { egzaminas_ = egz; }
 
     void duomenuived();
     void atsitiktiniuBaluGeneravimas();

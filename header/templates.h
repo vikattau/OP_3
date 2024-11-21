@@ -54,7 +54,7 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
             int egz = pazymiai.back();
             pazymiai.pop_back();
 
-            studentai.emplace_back(vardas, pavarde, pazymiai, egz);
+            studentai.emplace(studentai.end(), vardas, pavarde, pazymiai, egz);
         } else {
             cout << "Nera pazymiu studentui: " << vardas << " " << pavarde << endl;
             continue;

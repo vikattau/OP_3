@@ -3,8 +3,8 @@
 void Studentas::duomenuived(){
     while (true) {
         cout << "Iveskite Varda: ";
-        getline(cin, vardas);
-        if (vardas.empty()) {
+        getline(cin, vardas_);
+        if (vardas_.empty()) {
             cout << "Vardas negali buti tuscias. Bandykite dar karta." << endl;
         } else {
             break;
@@ -12,8 +12,8 @@ void Studentas::duomenuived(){
     }
     while (true) {
         cout << "Iveskite Pavarde: ";
-        getline(cin, pavarde);
-        if (pavarde.empty()) {
+        getline(cin, pavarde_);
+        if (pavarde_.empty()) {
             cout << "Pavarde negali buti tuscia. Bandykite dar karta." << endl;
         } else {
             break;
@@ -36,7 +36,7 @@ void Studentas::duomenuived(){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Neteisingai ivedete, bandykite dar karta: ";
             }
-            egzaminas = Egz;
+            egzaminas_ = Egz;
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
             int x;
@@ -59,7 +59,7 @@ void Studentas::duomenuived(){
                     }
                     break;
                 }
-                nd.push_back(x);
+                nd_.push_back(x);
                 ivestasPazymys = true;
             }
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -70,11 +70,12 @@ void Studentas::duomenuived(){
     }
 };
 void Studentas::valymas(){
-    vardas.clear();
-    pavarde.clear();
-    nd.clear();
-    egzaminas = 0;
+    vardas_.clear();
+    pavarde_.clear();
+    nd_.clear();
+    egzaminas_ = 0;
 };
+
 double skaicGalutiniBalaVidur(const Studentas &studentas){
     double vidutinisND = 0.0;
     for (int grade : studentas.getNd()) {
@@ -106,9 +107,9 @@ void Studentas::atsitiktiniuBaluGeneravimas() {
 
     int NDskaicius = 5;
     for (int i=0; i < NDskaicius; i++){
-        nd.push_back(dist(mt));
+        nd_.push_back(dist(mt));
     }
-    egzaminas = dist(mt);
+    egzaminas_ = dist(mt);
 };
 void generuotiStudentus (int studentuSkaicius, const string &failoPav){
     std::random_device rd;
