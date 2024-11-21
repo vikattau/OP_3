@@ -54,7 +54,18 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
             int egz = pazymiai.back();
             pazymiai.pop_back();
 
-            studentai.emplace(studentai.end(), vardas, pavarde, pazymiai, egz);
+        Studentas studentas;
+        studentas.setVardas(vardas);
+        studentas.setPavarde(pavarde);
+        studentas.setPazymiai(pazymiai);
+        studentas.setEgzaminas(egz);
+
+        studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
+        studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
+
+        studentai.push_back(studentas);
+
+
         } else {
             cout << "Nera pazymiu studentui: " << vardas << " " << pavarde << endl;
             continue;
@@ -92,8 +103,8 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
     for (const auto& s : stud) {
         failas << setw(17) << left << s.getPavarde()
                << setw(15) << left << s.getVardas()
-               << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaVidur(s)
-               << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaMed(s) << endl;
+               << setw(20) << left << fixed << setprecision(2) << s.galutinisBalasVidur
+               << setw(20) << left << fixed << setprecision(2) << s.galutinisBalasMed << endl;
     }
     failas.close();
 }
@@ -103,16 +114,16 @@ void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
 
     if constexpr (std::is_same_v<Container, std::list<typename Container::value_type>>) {
         studentai.sort([](const auto& a, const auto& b) {
-            return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            return a.galutinisBalasVidur < b.galutinisBalasVidur;
         });
     } else {
         std::sort(studentai.begin(), studentai.end(), [](const auto& a, const auto& b) {
-            return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+            return a.galutinisBalasVidur < b.galutinisBalasVidur;
         });
     }
 
     auto boundary = studentai.begin();
-    while (boundary != studentai.end() && skaicGalutiniBalaVidur(*boundary) < 5.0) {
+    while (boundary != studentai.end() && boundary->galutinisBalasVidur < 5.0) {
         ++boundary;
     }
 
@@ -131,21 +142,21 @@ void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
     } else if (rusiavimoPasirinkimas == 2) {
             if constexpr (is_same<Container, vector<Studentas>>::value) {
                 sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                    return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+                    return a.galutinisBalasVidur < b.galutinisBalasVidur;
             });
             } else if constexpr (is_same<Container, list<Studentas>>::value) {
             stud.sort([](const Studentas& a, const Studentas& b) {
-                return skaicGalutiniBalaVidur(a) > skaicGalutiniBalaVidur(b);
+                return a.galutinisBalasVidur > b.galutinisBalasVidur;
             });
             }
     } else {
             if constexpr (is_same<Container, vector<Studentas>>::value) {
                 sort(stud.begin(), stud.end(), [](const Studentas& a, const Studentas& b) {
-                    return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+                    return a.galutinisBalasVidur < b.galutinisBalasVidur;
             });
             } else if constexpr (is_same<Container, list<Studentas>>::value) {
                 stud.sort([](const Studentas& a, const Studentas& b) {
-                    return skaicGalutiniBalaVidur(a) < skaicGalutiniBalaVidur(b);
+                    return a.galutinisBalasVidur > b.galutinisBalasVidur;
             });
             }
         }

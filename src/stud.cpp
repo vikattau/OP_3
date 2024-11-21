@@ -171,4 +171,3 @@ void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiu
         });
     studentai.erase(it, studentai.end());
 }
-

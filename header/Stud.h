@@ -9,9 +9,13 @@ private:
     vector<int> nd_;
     int egzaminas_;
 public:
+    double galutinisBalasVidur;
+    double galutinisBalasMed;
     Studentas(const string& vardas = "", const string& pavarde = "",
-            const vector<int>& nd = {}, int egzaminas = 0)
-        : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas) {}
+            const vector<int>& nd = {}, int egzaminas = 0,
+            double galutinisBalasVidur = 0.0, double galutinisBalasMed = 0.0)
+        : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas),
+        galutinisBalasVidur(galutinisBalasVidur), galutinisBalasMed(galutinisBalasMed) {}
 
     string getVardas() const { return vardas_; }
     string getPavarde() const { return pavarde_; }
