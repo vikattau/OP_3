@@ -4,14 +4,14 @@ Programų su struc ir class palyginimas naudojant vector, 3 strategiją (student
 
 |Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
 |---|---|---|---|
-|100000|Duomenų nuskaitymas|0.135 s| s|
-||Rūšiavimas|0.014 s| s|
-||Dalijimas į grupes|0.005 s| s|
-||Įrašymas į failus|0.191 s| s|
-|1000000|Duomenų nuskaitymas|1.391 s| s|
-||Rūšiavimas|0.829 s| s|
-||Dalijimas į grupes|0.182 s| s|
-||Įrašymas į failus|1.95 s| s|
+|100000|Duomenų nuskaitymas|0.135 s|0.138 s|
+||Rūšiavimas|0.014 s|0.328 s|
+||Dalijimas į grupes|0.005 s|0.021 s|
+||Įrašymas į failus|0.191 s|0.206 s|
+|1000000|Duomenų nuskaitymas|1.391 s|1.534 s|
+||Rūšiavimas|0.829 s|4.49 s|
+||Dalijimas į grupes|0.182 s|0.221 s|
+||Įrašymas į failus|1.95 s|2.22 s|
 
 ## V1.0
 ### Naudojimo instrukcija   
