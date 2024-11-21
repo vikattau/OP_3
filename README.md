@@ -1,17 +1,46 @@
+### Naudojimo instrukcija   
+- **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
+- **Kompiliatorius**: Tam, kad galėtumėte sukompiliuoti projektą, reikia turėti C++ kompiliatorių (pvz., GCC, MSVC).
+- **Windows** (jei naudojate Windows): CMake ir `run.bat` failas buvo išbandyti Windows aplinkoje.
+### Projekto struktūra
+- **CMakeLists.txt**: Failas, naudojamas CMake projekto konfigūracijai ir kompilavimui.
+- **run.bat**: Windows `.bat` failas, skirtas paleisti programą.
+### Programos diegimas ir paleidimas
+- **Klonuokite** šį projektą į savo vietinį kompiuterį;
+- **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
+
 ## V1.1
 ### Programų greičio analizė 
 Programų su struc ir class palyginimas naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
 
-|Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
-|---|---|---|---|
-|100000|Duomenų nuskaitymas|0.135 s|0.138 s|
-||Rūšiavimas|0.014 s|0.328 s|
-||Dalijimas į grupes|0.005 s|0.021 s|
-||Įrašymas į failus|0.191 s|0.206 s|
-|1000000|Duomenų nuskaitymas|1.391 s|1.534 s|
-||Rūšiavimas|0.829 s|4.49 s|
-||Dalijimas į grupes|0.182 s|0.221 s|
-||Įrašymas į failus|1.95 s|2.22 s|
+|Flag'as|Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
+|---|---|---|---|---|
+|O1|100000|Duomenų nuskaitymas|0.135 s|0.204 s|
+|||Rūšiavimas|0.035 s|1.117 s|
+|||Dalijimas į grupes|0.014 s|0.05 s|
+|||Įrašymas į failus|0.191 s|0.254 s|
+||1000000|Duomenų nuskaitymas|1.391 s|2.051 s|
+|||Rūšiavimas|0.829 s|13.604 s|
+|||Dalijimas į grupes|0.188 s|0.545 s|
+|||Įrašymas į failus|1.95 s|2.491 s|
+|O2|100000|Duomenų nuskaitymas|0.142 s|0.204 s|
+|||Rūšiavimas|0.033 s|1.117 s|
+|||Dalijimas į grupes|0.01 s|0.05 s|
+|||Įrašymas į failus|0.198 s|0.254 s|
+||1000000|Duomenų nuskaitymas|1.391 s|2.051 s|
+|||Rūšiavimas|0.639 s|13.604 s|
+|||Dalijimas į grupes|0.149 s|0.521 s|
+|||Įrašymas į failus|1.95 s|2.478 s|
+|O3|100000|Duomenų nuskaitymas|0.135 s|0.204 s|
+|||Rūšiavimas|0.032 s|1.128 s|
+|||Dalijimas į grupes|0.007 s|0.05 s|
+|||Įrašymas į failus|0.191 s|0.250 s|
+||1000000|Duomenų nuskaitymas|1.365 s|2.017 s|
+|||Rūšiavimas|0.639 s|13.604 s|
+|||Dalijimas į grupes|0.148 s|0.488 s|
+|||Įrašymas į failus|1.89 s|2.506 s|
+
+.exe failo dydis projekte su struktūra - 333KB, projekte su klase - 345KB.
 
 ## V1.0
 ### Naudojimo instrukcija   
