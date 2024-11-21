@@ -38,9 +38,11 @@ Programų su struc ir class palyginimas naudojant vector, 3 strategiją (student
 ||1000000|Duomenų nuskaitymas|1.365 s|3.210 s|
 |||Rūšiavimas|0.639 s|2.253 s|
 |||Dalijimas į grupes|0.148 s|0.491 s|
-|||Įrašymas į failus|1.89 s|1.955 s|
+|||Įrašymas į failus|1.89 s|1.955 s|  
 
-.exe failo dydis projekte su struktūra - 333KB, projekte su klase - 340KB.
+|Flag'as|Projektas su struc|Projektas su class|
+|---|---|---|
+|o1, o2, o3|333 KB|340 KB|  
 
 ## V1.0
 ### Naudojimo instrukcija   
