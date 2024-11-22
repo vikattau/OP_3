@@ -11,38 +11,40 @@
 
 ## V1.1
 ### Programų greičio analizė 
-Programų su struc ir class palyginimas naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
+Programų su struct ir class palyginimas naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
 
-|Flag'as|Studentų skaičius|Programos dalis|Naudojant struc|Naudojant class|
+|Flag'as|Studentų skaičius|Programos dalis|Naudojant struct|Naudojant class|
 |---|---|---|---|---|
-|O1|100000|Duomenų nuskaitymas|0.135 s|0.291 s|
-|||Rūšiavimas|0.035 s|0.167 s|
-|||Dalijimas į grupes|0.014 s|0.05 s|
+|O1|100000|Duomenų nuskaitymas|0.135 s|0.192 s|
+|||Rūšiavimas|0.035 s|0.056 s|
+|||Dalijimas į grupes|0.014 s|0.024 s|
 |||Įrašymas į failus|0.191 s|0.192 s|
-||1000000|Duomenų nuskaitymas|1.391 s|3.122 s|
-|||Rūšiavimas|0.829 s|2.223 s|
-|||Dalijimas į grupes|0.188 s|0.512 s|
+||1000000|Duomenų nuskaitymas|1.391 s|2.034 s|
+|||Rūšiavimas|0.829 s|0.734 s|
+|||Dalijimas į grupes|0.188 s|0.209 s|
 |||Įrašymas į failus|1.95 s|1.934 s|
-|O2|100000|Duomenų nuskaitymas|0.142 s|0.308 s|
-|||Rūšiavimas|0.033 s|0.177 s|
-|||Dalijimas į grupes|0.01 s|0.05 s|
-|||Įrašymas į failus|0.198 s|0.192 s|
-||1000000|Duomenų nuskaitymas|1.391 s|3.121 s|
-|||Rūšiavimas|0.639 s|2.253 s|
-|||Dalijimas į grupes|0.149 s|0.498 s|
+|O2|100000|Duomenų nuskaitymas|0.142 s|0.176 s|
+|||Rūšiavimas|0.033 s|0.051 s|
+|||Dalijimas į grupes|0.01 s|0.023 s|
+|||Įrašymas į failus|0.198 s|0.245 s|
+||1000000|Duomenų nuskaitymas|1.391 s|1.891 s|
+|||Rūšiavimas|0.639 s|0.689 s|
+|||Dalijimas į grupes|0.149 s|0.213 s|
 |||Įrašymas į failus|1.95 s|1.922 s|
-|O3|100000|Duomenų nuskaitymas|0.135 s|0.302 s|
-|||Rūšiavimas|0.032 s|0.175 s|
-|||Dalijimas į grupes|0.007 s|0.052 s|
+|O3|100000|Duomenų nuskaitymas|0.135 s|0.175 s|
+|||Rūšiavimas|0.032 s|0.052 s|
+|||Dalijimas į grupes|0.007 s|0.022 s|
 |||Įrašymas į failus|0.191 s|0.194 s|
-||1000000|Duomenų nuskaitymas|1.365 s|3.210 s|
-|||Rūšiavimas|0.639 s|2.253 s|
-|||Dalijimas į grupes|0.148 s|0.491 s|
+||1000000|Duomenų nuskaitymas|1.365 s|1.775 s|
+|||Rūšiavimas|0.639 s|0.761 s|
+|||Dalijimas į grupes|0.148 s|0.213 s|
 |||Įrašymas į failus|1.89 s|1.955 s|  
 
-|Flag'as|Projektas su struc|Projektas su class|
+|Flag'as|Projektas su struct|Projektas su class|
 |---|---|---|
-|o1, o2, o3|333 KB|340 KB|  
+|o1|119.5 KB|106.5 KB|  
+|o2|116 KB|107 KB|
+|o3|136 KB|114 KB| 
 
 ## V1.0
 ### Naudojimo instrukcija   
