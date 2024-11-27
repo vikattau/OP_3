@@ -48,7 +48,7 @@ public:
     friend istream& operator>>(istream& in, Studentas& s);
     friend ifstream& operator>>(ifstream& in, Studentas& studentas);
     friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
-   // void duomenuived();
+
     void atsitiktiniuBaluGeneravimas();
     void valymas();
 

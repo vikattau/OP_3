@@ -21,7 +21,6 @@ void spausdinimas(const Container &stud){
 template <typename Container>
 void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
     ifstream failas(failoPavadinimas);
-    //string failoEilute;
     if (!failas.is_open()) {
         cout<< "Nepavyko nuskaityti failo"<<endl;
         return;
@@ -30,15 +29,15 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
     getline(failas, failoEilute);
     Studentas studentas;
 
-    while (failas >> studentas) {  // Read each student using the custom operator>>
-        studentai.push_back(studentas);  // Add the student to the container
+    while (failas >> studentas) {
+        studentai.push_back(studentas);
     }
 
-    if (studentai.empty()) {  // Check if no students were read
+    if (studentai.empty()) {
         cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
     }
 
-   failas.close();  // Close the file
+   failas.close();
 };
 template <typename Container>
 void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Container &galvociai) {
@@ -64,6 +63,8 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
            << setw(20) << left << "Galutinis (Med.)" << endl;
 
     failas << string(70, '-') << endl;
+
+
 
     for (const auto& s : stud) {
         failas << setw(17) << left << s.getPavarde()
@@ -296,17 +297,17 @@ void programosPasirinkimas(int ats, Container &studentai){
     if (ats == 1){
         cout<< "Kuri faila norite nuskaityti? (Pasirinkite skaiciu): \n"<<
                 "1 - kursiokai.txt \n"<<
-                "2 - studentai10000.txt \n"<<
-                "3 - studentai100000.txt \n"<<
-                "4 - studentai1000000.txt \n"<<endl;
+                "2 - studentai_1000.txt \n"<<
+                "3 - studentai_10000.txt \n"<<
+                "4 - studentai_100000.txt \n"<<endl;
         int failas;
         cin >> failas;
         string failoPav;
         switch (failas) {
             case 1: failoPav = "kursiokai.txt"; break;
-            case 2: failoPav = "studentai10000.txt"; break;
-            case 3: failoPav = "studentai100000.txt"; break;
-            case 4: failoPav = "studentai1000000.txt"; break;
+            case 2: failoPav = "studentai_1000.txt"; break;
+            case 3: failoPav = "studentai_10000.txt"; break;
+            case 4: failoPav = "studentai_100000.txt"; break;
             default: cout << "Tokio failo nera" << endl; return;
         }
         skaitytiFaila(studentai, failoPav);

@@ -12,8 +12,11 @@ ifstream& operator>>(ifstream& in, Studentas& studentas) {
         ss >> grade;
     }
 
-        ss >> studentas.egzaminas_;
-        return in;
+    ss >> studentas.egzaminas_;
+    studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
+    studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
+
+    return in;
 }
 
 istream& operator>>(istream& in, Studentas& studentas){
@@ -65,17 +68,18 @@ istream& operator>>(istream& in, Studentas& studentas){
         cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
     }
     }
+    studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
+    studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
+
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Studentas& studentas){
     out << setw(15) << left << studentas.pavarde_
-            << setw(15) << left << studentas.vardas_;
-
-        // Calculate and print final grades (average and median)
-    out << setw(20) << left << fixed << setprecision(2)
-        << skaicGalutiniBalaVidur(studentas)
+        << setw(15) << left << studentas.vardas_
         << setw(20) << left << fixed << setprecision(2)
-        << skaicGalutiniBalaMed(studentas);
+        << studentas.galutinisBalasVidur
+        << setw(20) << left << fixed << setprecision(2)
+        << studentas.galutinisBalasMed;
 
         return out;
 }
