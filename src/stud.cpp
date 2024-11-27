@@ -185,3 +185,24 @@ void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiu
         });
     studentai.erase(it, studentai.end());
 }
+void pademonstruotiTrysMetodus() {
+    Studentas studentas1("Jonas", "Jonaitis", {8, 7, 10}, 9.0);
+    std::cout << "Studentas1: " << studentas1.getVardas() << " " << studentas1.getPavarde() << ", egzamino pazymys: " << studentas1.getEgz() << std::endl;
+
+    cout << "Studentas2 sukuriamas kopijuojant studentas1" << endl;
+    Studentas studentas2 = studentas1;
+    std::cout << "Studentas2 (kopija): " << studentas2.getVardas() << " " << studentas2.getPavarde() << ", egzamino pazymys: " << studentas2.getEgz() << std::endl;
+
+    cout << "Studentui3 priskiriamas studentas1" << endl;
+    Studentas studentas3("Petras", "Petraitis", {7, 6, 8}, 8.0);
+    std::cout << "Studentas3 (pries priskyrima): " << studentas3.getVardas() << " " << studentas3.getPavarde() << ", egzamino pazymys: " << studentas3.getEgz() << std::endl;
+    studentas3 = studentas1;
+    std::cout << "Studentas3 (po priskyrimo): " << studentas3.getVardas() << " " << studentas3.getPavarde() << ", egzamino pazymys: " << studentas3.getEgz() << std::endl;
+
+    {
+        Studentas studentas4("Ona", "Onaite", {10, 9, 10}, 8.0);
+        std::cout << "Studentas4 sukurtas" << std::endl;
+        std::cout << "Studentas4 : " << studentas4.getVardas() << " " << studentas4.getPavarde() << ", egzamino pazymys: " << studentas4.getEgz() << std::endl;
+    }
+    cout << "Studentas 4 sunaikintas"  << std::endl;
+}

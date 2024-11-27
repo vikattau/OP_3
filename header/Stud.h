@@ -11,6 +11,7 @@ private:
 public:
     double galutinisBalasVidur;
     double galutinisBalasMed;
+
     Studentas(const string& vardas = "", const string& pavarde = "",
             const vector<int>& nd = {}, int egzaminas = 0,
             double galutinisBalasVidur = 0.0, double galutinisBalasMed = 0.0)
@@ -65,5 +66,5 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
 void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
 void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
-
+void pademonstruotiTrysMetodus();
 #endif // STUD_H_INCLUDED
