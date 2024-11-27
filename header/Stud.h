@@ -17,6 +17,24 @@ public:
         : vardas_(vardas), pavarde_(pavarde), nd_(nd), egzaminas_(egzaminas),
         galutinisBalasVidur(galutinisBalasVidur), galutinisBalasMed(galutinisBalasMed) {}
 
+    // Copy Constructor
+    Studentas(const Studentas& other)
+        : vardas_(other.vardas_), pavarde_(other.pavarde_), nd_(other.nd_),
+          egzaminas_(other.egzaminas_), galutinisBalasVidur(other.galutinisBalasVidur),
+          galutinisBalasMed(other.galutinisBalasMed) {}
+
+    // Copy Assignment Operator
+    Studentas& operator=(const Studentas& other) {
+        if (this == &other) return *this;
+        vardas_ = other.vardas_;
+        pavarde_ = other.pavarde_;
+        nd_ = other.nd_;
+        egzaminas_ = other.egzaminas_;
+        galutinisBalasVidur = other.galutinisBalasVidur;
+        galutinisBalasMed = other.galutinisBalasMed;
+        return *this;
+    }
+
     string getVardas() const { return vardas_; }
     string getPavarde() const { return pavarde_; }
     vector<int> getNd() const { return nd_; }
