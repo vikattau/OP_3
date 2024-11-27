@@ -45,7 +45,10 @@ public:
     void setPazymiai(const vector<int>& pazymiai) { nd_ = pazymiai; }
     void setEgzaminas(int egz) { egzaminas_ = egz; }
 
-    void duomenuived();
+    friend istream& operator>>(istream& in, Studentas& s);
+    friend ifstream& operator>>(ifstream& in, Studentas& studentas);
+    friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
+   // void duomenuived();
     void atsitiktiniuBaluGeneravimas();
     void valymas();
 
@@ -55,6 +58,7 @@ public:
         nd_.clear();
     }
 };
+istream& operator>>(istream& in, Studentas& student);
 double skaicGalutiniBalaVidur(const Studentas &studentas);
 double skaicGalutiniBalaMed(const Studentas &studentas);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);

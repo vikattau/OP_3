@@ -1,74 +1,84 @@
 #include "Stud.h"
+ifstream& operator>>(ifstream& in, Studentas& studentas) {
+    std::string line;
+    std::getline(in, line);
+    if (line.empty()) return in;
 
-void Studentas::duomenuived(){
-    while (true) {
-        cout << "Iveskite Varda: ";
-        getline(cin, vardas_);
-        if (vardas_.empty()) {
-            cout << "Vardas negali buti tuscias. Bandykite dar karta." << endl;
-        } else {
-            break;
-        }
-    }
-    while (true) {
-        cout << "Iveskite Pavarde: ";
-        getline(cin, pavarde_);
-        if (pavarde_.empty()) {
-            cout << "Pavarde negali buti tuscia. Bandykite dar karta." << endl;
-        } else {
-            break;
-        }
-    }
-    while (true) {
-        cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
-        string ats;
-        cin >> ats;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    std::stringstream ss(line);
+    ss >> studentas.vardas_ >> studentas.pavarde_;
 
-        if (ats == "T" || ats == "t") {
-            atsitiktiniuBaluGeneravimas();
-            break;
-        } else if (ats == "N" || ats == "n") {
-            int Egz;
-            cout << "Iveskite egzamino rezultata (0 - 10): ";
-            while (!(cin >> Egz) || Egz < 0 || Egz > 10) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Neteisingai ivedete, bandykite dar karta: ";
-            }
-            egzaminas_ = Egz;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
-            int x;
-            bool ivestasPazymys = false;
-            while (true) {
-                cout << "Pazymys: ";
-                while (!(cin >> x)) {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    studentas.nd_.resize(5);
+    for (int& grade : studentas.nd_) {
+        ss >> grade;
+    }
+
+        ss >> studentas.egzaminas_;
+        return in;
+}
+
+istream& operator>>(istream& in, Studentas& studentas){
+    cout << "Iveskite Varda: ";
+    in >> studentas.vardas_;
+    cout << "Iveskite Pavarde: ";
+    in >> studentas.pavarde_;
+
+    while (true){
+    cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
+    string ats;
+    in >> ats;
+    in.ignore(numeric_limits<streamsize>::max(), '\n');
+    if (ats == "T" || ats == "t") {
+        studentas.atsitiktiniuBaluGeneravimas();
+        break;
+    } else if (ats == "N" || ats == "n") {
+        cout << "Iveskite egzamino rezultata (0 - 10): ";
+        while (!(in >> studentas.egzaminas_) || studentas.egzaminas_ < 0 || studentas.egzaminas_ > 10) {
+            in.clear();
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Neteisingai ivedete, bandykite dar karta: ";
+        }
+        cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
+        studentas.nd_.clear();
+        int x;
+        bool ivestasPazymys = false;
+        while (true) {
+            cout << "Pazymys: ";
+            while (!(in >> x) || x < 0 || x > 10) {
+                    in.clear();
+                    in.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Neteisingai ivedete, bandykite dar karta: ";
-                }
-                if (x < 0 || x > 10) {
-                    cout << "Neteisingas pazymys";
+            }
+
+            if (x == 0) {
+                if (!ivestasPazymys) {
+                cout << "Turite ivesti bent viena pazymi. \n";
                     continue;
                 }
-                if (x == 0) {
-                    if (!ivestasPazymys) {
-                        cout << "Turite ivesti bent viena pazymi. \n";
-                        continue;
-                    }
-                    break;
-                }
-                nd_.push_back(x);
-                ivestasPazymys = true;
+                break;
             }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            break;
-        } else {
-            cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
+            studentas.nd_.push_back(x);
+            ivestasPazymys = true;
         }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        break;
+    } else {
+        cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
     }
-};
+    }
+    return in;
+}
+std::ostream& operator<<(std::ostream& out, const Studentas& studentas){
+    out << setw(15) << left << studentas.pavarde_
+            << setw(15) << left << studentas.vardas_;
+
+        // Calculate and print final grades (average and median)
+    out << setw(20) << left << fixed << setprecision(2)
+        << skaicGalutiniBalaVidur(studentas)
+        << setw(20) << left << fixed << setprecision(2)
+        << skaicGalutiniBalaMed(studentas);
+
+        return out;
+}
 void Studentas::valymas(){
     vardas_.clear();
     pavarde_.clear();

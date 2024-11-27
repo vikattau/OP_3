@@ -13,10 +13,7 @@ void spausdinimas(const Container &stud){
     cout << string(70, '-') << endl;
 
     for (const auto& Lok : stud){
-        cout<< setw(15) << left << Lok.getPavarde()
-        << setw(15) << left << Lok.getVardas()
-        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaVidur(Lok)
-        << setw(20) << left << fixed << setprecision(2) << skaicGalutiniBalaMed(Lok) << endl;
+        cout << Lok << endl;
     }
 
 };
@@ -24,56 +21,24 @@ void spausdinimas(const Container &stud){
 template <typename Container>
 void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
     ifstream failas(failoPavadinimas);
-    if (!failas) {
+    //string failoEilute;
+    if (!failas.is_open()) {
         cout<< "Nepavyko nuskaityti failo"<<endl;
         return;
     }
-    string failoEilute;
+   string failoEilute;
     getline(failas, failoEilute);
-    while(getline(failas, failoEilute)){
-        std::istringstream iss(failoEilute);
-        string vardas, pavarde;
-        vector<int> pazymiai;
+    Studentas studentas;
 
-        iss >> vardas >> pavarde;
-
-        if (iss.fail()){
-            cout << "Nepavyko teisingai nuskaityti studento vardo ir pavardes." << endl;
-            continue;
-        }
-
-        int pazymys;
-        while(iss >> pazymys){
-            if (pazymys < 0 || pazymys > 10) {
-                cout << "Faile neteisingas pazymys studentui: " << vardas << " " << pavarde <<endl;
-                continue;
-            }
-            pazymiai.push_back(pazymys);
-        }
-        if (!pazymiai.empty()) {
-            int egz = pazymiai.back();
-            pazymiai.pop_back();
-
-        Studentas studentas;
-        studentas.setVardas(vardas);
-        studentas.setPavarde(pavarde);
-        studentas.setPazymiai(pazymiai);
-        studentas.setEgzaminas(egz);
-
-        studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
-        studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
-
-        studentai.push_back(studentas);
-
-
-        } else {
-            cout << "Nera pazymiu studentui: " << vardas << " " << pavarde << endl;
-            continue;
-        }
+    while (failas >> studentas) {  // Read each student using the custom operator>>
+        studentai.push_back(studentas);  // Add the student to the container
     }
-    if (studentai.empty()){
+
+    if (studentai.empty()) {  // Check if no students were read
         cout << "Ivyko klaida: Nebuvo galima nuskaityti jokiu studentu is failo" << endl;
     }
+
+   failas.close();  // Close the file
 };
 template <typename Container>
 void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Container &galvociai) {
@@ -364,7 +329,7 @@ void programosPasirinkimas(int ats, Container &studentai){
         for(int i=0; i<skaicius; i++){
             cout<<"Iveskite informacija: "<<endl;
             Studentas A;
-            A.duomenuived();
+            cin >> A;
             studentai.push_back(A);
             cout << "Studento objektas saugomas adresu: " << &studentai.back() << endl;
             A.valymas();
