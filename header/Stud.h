@@ -31,7 +31,11 @@ public:
     void atsitiktiniuBaluGeneravimas();
     void valymas();
 
-    ~Studentas() {}
+    ~Studentas() {
+        vardas_.clear();
+        pavarde_.clear();
+        nd_.clear();
+    }
 };
 double skaicGalutiniBalaVidur(const Studentas &studentas);
 double skaicGalutiniBalaMed(const Studentas &studentas);
