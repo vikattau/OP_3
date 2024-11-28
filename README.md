@@ -23,7 +23,7 @@ Programa leidžia:
    - Skaitymas iš pateikto failo.
 
 2. **Duomenų apdorojimas**:
-   - Studentų galutinio balo skaičiavimas (vidurkio ir medianos metodais).
+   - Studentų galutinio balo skaičiavimas (imant namų darbų pažymių vidurkį ir medianą).
    - Studentų klasifikacija į "galvočius" ir "vargšiukus".
 
 3. **Duomenų išvestis**:
@@ -31,8 +31,7 @@ Programa leidžia:
    - Rezultatų rašymas į failą.
 
 4. **Programos veikimo analizė**:
-   - Programos efektyvumo analizė naudojant skirtingus duomenų dydžius.
-   - Testavimo rezultatai pateikiami lentelėje.  
+   - Programos efektyvumo analizė naudojant skirtingus duomenų dydžius. 
 ### Programos greičio analizė
 Pirminės programos su klasėmis ir programos patobulintos perdengtais įvesties ir išvesties operatoriais bei trijų metodų taisykle greičio analizė naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
 
