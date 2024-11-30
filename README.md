@@ -8,6 +8,47 @@
 ### Programos diegimas ir paleidimas
 - **Klonuokite** šį projektą į savo vietinį kompiuterį;
 - **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
+## V1.2
+### Programos apibūdinimas  
+Programa leidžia:
+- Rankiniu būdu įvesti studentų duomenis (vardą, pavardę, nd pažymius, egzamino rezultatą).
+- Automatiškai generuoti įvestų studentų pažymius.
+- Automatiškai generuoti studentų duomenis į failą.
+- Skaityti duomenis iš failo.
+- Klasifikuoti studentus pagal jų galutinius balus.
+- Išvesti rezultatus į ekraną arba į failą.  
+1. **Duomenų įvedimas**:
+   - Rankiniu būdu vartotojui įvedant nurodytus duomenis.
+   - Automatiškai generuojant įvestų studentų pažymius arba studentų duomenų failus.
+   - Skaitymas iš pateikto failo.
+
+2. **Duomenų apdorojimas**:
+   - Studentų galutinio balo skaičiavimas (imant namų darbų pažymių vidurkį ir medianą).
+   - Studentų klasifikacija į "galvočius" ir "vargšiukus".
+
+3. **Duomenų išvestis**:
+   - Išvestis į ekraną.
+   - Rezultatų rašymas į failą.
+
+4. **Programos veikimo analizė**:
+   - Programos efektyvumo analizė naudojant skirtingus duomenų dydžius. 
+### Programos greičio analizė
+Pirminės programos su klasėmis ir programos patobulintos perdengtais įvesties ir išvesties operatoriais bei trijų metodų taisykle greičio analizė naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
+
+|Flag'as|Studentų skaičius|Programos dalis|Pirminė versija|Patobulinta versija|
+|---|---|---|---|---|
+|O3|100000|Duomenų nuskaitymas|0.175 s|0.156 s|
+|||Rūšiavimas|0.052 s|0.053 s|
+|||Dalijimas į grupes|0.022 s|0.024 s|
+|||Įrašymas į failus|0.194 s|0.193 s|
+||1000000|Duomenų nuskaitymas|1.775 s|1.597 s|
+|||Rūšiavimas|0.761 s|0.792 s|
+|||Dalijimas į grupes|0.213 s|0.221 s|
+|||Įrašymas į failus|1.955 s|1.959 s|  
+
+Testavimo pavyzdys: 
+![image](https://github.com/user-attachments/assets/94d6061b-8075-4e39-9501-0918a688896c)
+
 
 ## V1.1
 ### Programų greičio analizė 
