@@ -59,7 +59,6 @@ public:
         nd_.clear();
     }
 };
-istream& operator>>(istream& in, Studentas& student);
 double skaicGalutiniBalaVidur(const Studentas &studentas);
 double skaicGalutiniBalaMed(const Studentas &studentas);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
