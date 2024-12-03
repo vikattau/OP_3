@@ -5,7 +5,7 @@ ifstream& operator>>(ifstream& in, Studentas& studentas) {
     if (line.empty()) return in;
 
     std::stringstream ss(line);
-    ss >> studentas.vardas_ >> studentas.pavarde_;
+    ss >> studentas.vardas >> studentas.pavarde;
 
     studentas.nd_.resize(5);
     for (int& grade : studentas.nd_) {
@@ -21,9 +21,9 @@ ifstream& operator>>(ifstream& in, Studentas& studentas) {
 
 istream& operator>>(istream& in, Studentas& studentas){
     cout << "Iveskite Varda: ";
-    in >> studentas.vardas_;
+    in >> studentas.vardas;
     cout << "Iveskite Pavarde: ";
-    in >> studentas.pavarde_;
+    in >> studentas.pavarde;
 
     while (true){
     cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
@@ -74,8 +74,8 @@ istream& operator>>(istream& in, Studentas& studentas){
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Studentas& studentas){
-    out << setw(15) << left << studentas.pavarde_
-        << setw(15) << left << studentas.vardas_
+    out << setw(15) << left << studentas.pavarde
+        << setw(15) << left << studentas.vardas
         << setw(20) << left << fixed << setprecision(2)
         << studentas.galutinisBalasVidur
         << setw(20) << left << fixed << setprecision(2)
@@ -84,8 +84,8 @@ std::ostream& operator<<(std::ostream& out, const Studentas& studentas){
         return out;
 }
 void Studentas::valymas(){
-    vardas_.clear();
-    pavarde_.clear();
+    vardas.clear();
+    pavarde.clear();
     nd_.clear();
     egzaminas_ = 0;
 };
