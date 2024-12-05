@@ -34,19 +34,23 @@ Programa leidžia:
 4. **Programos veikimo analizė**:
    - Programos efektyvumo analizė naudojant skirtingus duomenų dydžius.
 ### Programos greičio analizė
-Pogramos su klasėmis 3 versijų (pirminės programos su klasėmis, programos patobulintos perdengtais įvesties ir išvesties operatoriais bei trijų metodų taisykle,  
-programos su bazine Žmogaus klase ir išvestine klase - Studentas) greičio analizė naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
+Pogramos su klasėmis 3 versijų (pirminės programos su klasėmis, programos patobulintos perdengtais įvesties ir išvesties operatoriais bei trijų metodų taisykle, programos su bazine Žmogaus klase ir išvestine klase - Studentas) greičio analizė naudojant vector, 3 strategiją (studentų dalijimas patobulinus antrą strategiją (ištrinimo) remove_if funkcija) ir 100 tūksk. bei 1 mln. studentų failus.
 
 |Flag'as|Studentų skaičius|Programos dalis|Pirminė versija|Patobulinta versija|Versija su Žmogaus klase| 
 |---|---|---|---|---|---|
-|O3|100000|Duomenų nuskaitymas|0.175 s|0.156 s|
-|||Rūšiavimas|0.052 s|0.053 s|
-|||Dalijimas į grupes|0.022 s|0.024 s|
-|||Įrašymas į failus|0.194 s|0.193 s|
-||1000000|Duomenų nuskaitymas|1.775 s|1.597 s|
-|||Rūšiavimas|0.761 s|0.792 s|
-|||Dalijimas į grupes|0.213 s|0.221 s|
-|||Įrašymas į failus|1.955 s|1.959 s| 
+|O3|100000|Duomenų nuskaitymas|0.175 s|0.156 s|0.151 s|
+|||Rūšiavimas|0.052 s|0.053 s|0.054 s|
+|||Dalijimas į grupes|0.022 s|0.024 s|0.024 s|
+|||Įrašymas į failus|0.194 s|0.193 s|0.193 s|
+||1000000|Duomenų nuskaitymas|1.775 s|1.597 s|1.486 s|
+|||Rūšiavimas|0.761 s|0.792 s|0.787 s|
+|||Dalijimas į grupes|0.213 s|0.221 s|0.218 s|
+|||Įrašymas į failus|1.955 s|1.959 s|1.963 s|  
+
+Testavimo pavyzdys: 
+![image](https://github.com/user-attachments/assets/94d6061b-8075-4e39-9501-0918a688896c)
+
+
 ## V1.2
 ### Programos apibūdinimas  
 Programa leidžia:
