@@ -8,11 +8,12 @@ int main(){
         "0 - jei norite studentu duomenis ivesite ranka, \n" <<
         "1 - jei norite studentu duomenis nuskaityti nuo failo, \n" <<
         "2 - jei norite generuoti failus su studentu duomenimis, \n" <<
-        "3 - jei norite atlikti programos veikimo greicio analize: \n" <<
-        "4 - jei norite demonstruoti kaip veikia triju metodu taisykle"
+        "3 - jei norite atlikti programos veikimo greicio analize, \n" <<
+        "4 - jei norite demonstruoti kaip veikia triju metodu taisykle, \n" <<
+        "5 - jei norite demonstruoti Zmogaus klase: \n"
         << endl;
     int ats;
-    while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2 && ats != 3 && ats != 4)){
+    while(!(cin >> ats) || (ats != 1 && ats != 0 && ats != 2 && ats != 3 && ats != 4 && ats != 5)){
         cout << "Netinkama ivestis. Bandykite dar karta: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -69,6 +70,15 @@ int main(){
     } else if (ats == 4){
         cout << "Demonstruojama Triju metodu taisykle" << endl;
         pademonstruotiTrysMetodus();
+    } else if (ats == 5){
+        cout << "Demonstruojama Zmogaus klase" << endl;
+        //Zmogus zmogus;
+        Zmogus* zmogus = new Studentas("Jonas", "Jonaitis");
+
+        cout << zmogus->getVardas() << " " << zmogus->getPavarde() << endl;
+        zmogus->spausdinti();
+
+        delete zmogus;
     }
     system("pause");
     return 0;

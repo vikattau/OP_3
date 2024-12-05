@@ -18,8 +18,6 @@ public:
 };
 class Studentas : public Zmogus {
 private:
-   // string vardas_;
-   // string pavarde_;
     vector<int> nd_;
     int egzaminas_;
 public:
@@ -64,7 +62,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
 
     void spausdinti() const override {
-        std::cout << "Vardas: " << vardas << ", Pavarde: " << pavarde << std::endl;
+        cout << "Vardas: " << vardas << ", Pavarde: " << pavarde << endl;
     }
     void atsitiktiniuBaluGeneravimas();
     void valymas();
