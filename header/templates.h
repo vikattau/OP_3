@@ -67,10 +67,7 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
 
 
     for (const auto& s : stud) {
-        failas << setw(17) << left << s.getPavarde()
-               << setw(15) << left << s.getVardas()
-               << setw(20) << left << fixed << setprecision(2) << s.galutinisBalasVidur
-               << setw(20) << left << fixed << setprecision(2) << s.galutinisBalasMed << endl;
+       failas << s << endl;
     }
     failas.close();
 }

@@ -3,9 +3,10 @@
 #include "Mylib.h"
 
 class Zmogus {
-public:
+protected:
     string vardas;
     string pavarde;
+public:
     Zmogus(const string vardas_ = "", const string pavarde_ = ""):
         vardas (vardas_), pavarde(pavarde_){}
 
