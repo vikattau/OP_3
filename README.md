@@ -1,4 +1,18 @@
-### Naudojimo instrukcija   
+# Projekto Įdiegimas ir Naudojimas
+## Įdiegimas
+Norėdami įdiegti programą, atlikite šiuos žingsnius:
+1. **Atsisiųskite diegimo failą**:
+   - Atsisiųskite `setup.exe` failą.
+2. **Paleiskite diegimo programą**:
+   - Dukart spustelėkite `setup.exe` failą, kad pradėtumėte diegimo procesą.
+3. **Sekite diegimo vedlio nurodymus**:
+   - Diegimo vedlys padės atlikti visus žingsnius. Jums reikės priimti licencijos sutartį ir paspausti "Next" (Kitas), kad tęstumėte diegimą.
+4. **Baigti diegimą**:
+   - Baigus diegimą, paspauskite "Finish" (Baigti), kad užbaigtumėte diegimo vedlį.
+5. **Paleiskite programą**:
+   - Dabar galite paleisti programą pasirinkdami ją iš pradžios meniu arba darbalaukio.
+
+### Naudojimo instrukcija norint paleisti su CMake
 - **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
 - **Kompiliatorius**: Tam, kad galėtumėte sukompiliuoti projektą, reikia turėti C++ kompiliatorių (pvz., GCC, MSVC).
 - **Windows** (jei naudojate Windows): CMake ir `run.bat` failas buvo išbandyti Windows aplinkoje.
@@ -8,6 +22,9 @@
 ### Programos diegimas ir paleidimas
 - **Klonuokite** šį projektą į savo vietinį kompiuterį;
 - **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
+
+## V3.0 
+Sukurtas programos įdiegimo failas - setup.exe pagal programos V1.5 versiją.
 ## V1.5
 Patobulinta programa - pridėta Žmogaus klasė.
 ### Programos apibūdinimas  
