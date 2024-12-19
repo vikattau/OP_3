@@ -19,7 +19,7 @@ Norėdami įdiegti programą, atlikite šiuos žingsnius:
 ### Naudojimo instrukcija norint paleisti su CMake
 - **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
 - **Kompiliatorius**: Tam, kad galėtumėte sukompiliuoti projektą, reikia turėti C++ kompiliatorių (pvz., GCC, MSVC).
-- **Windows** (jei naudojate Windows): CMake ir `run.bat` failas buvo išbandyti Windows aplinkoje.
+- **Windows**: CMake ir `run.bat` failas buvo išbandyti Windows aplinkoje.
 ### Projekto struktūra
 - **CMakeLists.txt**: Failas, naudojamas CMake projekto konfigūracijai ir kompilavimui.
 - **run.bat**: Windows `.bat` failas, skirtas paleisti programą.
@@ -28,7 +28,7 @@ Norėdami įdiegti programą, atlikite šiuos žingsnius:
 - **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
 
 ## V3.0 
-Sukurtas programos įdiegimo failas - setup.exe pagal programos V1.5 versiją.  
+Sukurti programos įdiegimo failai - setup.exe ir SetUp.msi pagal programos V1.5 versiją. 
 
 ## V1.5
 Patobulinta programa - pridėta Žmogaus klasė.
