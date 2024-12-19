@@ -2,7 +2,7 @@
 ## Įdiegimas
 Norėdami įdiegti programą, atlikite šiuos žingsnius:
 1. **Atsisiųskite diegimo failą**:
-   - Atsisiųskite `setup.exe` failą.
+   - Atsisiųskite `setup.exe` ir `SetUp.msi" failus.
 2. **Paleiskite diegimo programą**:
    - Dukart spustelėkite `setup.exe` failą, kad pradėtumėte diegimo procesą.
 3. **Sekite diegimo vedlio nurodymus**:
@@ -11,6 +11,10 @@ Norėdami įdiegti programą, atlikite šiuos žingsnius:
    - Baigus diegimą, paspauskite "Finish" (Baigti), kad užbaigtumėte diegimo vedlį.
 5. **Paleiskite programą**:
    - Dabar galite paleisti programą pasirinkdami ją iš pradžios meniu arba darbalaukio.
+6. **Programos išdiegimas**:  
+   - Jei norite pašalinti programą, galite tai padaryti keliais būdais:
+       - Naudojant .msi failą: Dukart spustelėkite SetUp.msi failą ir pasirinkite "Remove" (Pašalinti), kad išdiegimas būtų pradėtas.
+       - Naudojant Valdymo skydą: Eikite į Valdymo skydas > Programos ir funkcijos, suraskite įdiegtos programos pavadinimą ir spustelėkite "Pašalinti" (Uninstall).
 
 ### Naudojimo instrukcija norint paleisti su CMake
 - **CMake**: Būtina turėti įdiegtą CMake (rekomenduojama versija 3.25 ar vėlesnė);
@@ -24,7 +28,8 @@ Norėdami įdiegti programą, atlikite šiuos žingsnius:
 - **Paleidimas** su run.bat - atliks visus reikalingus veiksmus: sukompiliuos projektą ir paleis jį automatiškai.
 
 ## V3.0 
-Sukurtas programos įdiegimo failas - setup.exe pagal programos V1.5 versiją.
+Sukurtas programos įdiegimo failas - setup.exe pagal programos V1.5 versiją.  
+
 ## V1.5
 Patobulinta programa - pridėta Žmogaus klasė.
 ### Programos apibūdinimas  
